@@ -27,9 +27,12 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	// Module related to JPA
 	compile("mysql:mysql-connector-java:5.1.31")
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	// Spring web module
+	compile('org.springframework.boot:spring-boot-starter-web')
+	// Test module
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
