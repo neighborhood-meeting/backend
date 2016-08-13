@@ -3,6 +3,7 @@ package com.nexters.neighborhood.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,17 +17,16 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date creationDate;
     private String name;
     private String categoryId;
     private String writerId;
     private Long viewCount;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date creationDate;
     private String contents;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional=false)
-    @JoinColumn(name="articleId")
-    private List<Comment> comments;
+    @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
+    private List<Comment> comments = new ArrayList<>();
 
     public Date getCreationDate() {
         return creationDate;

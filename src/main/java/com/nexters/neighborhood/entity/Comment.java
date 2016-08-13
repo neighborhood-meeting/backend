@@ -1,7 +1,6 @@
 package com.nexters.neighborhood.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,9 +19,6 @@ public class Comment {
     private Date creationDate;
     private String contents;
     private String writer;
-
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
     private Long articleId;
 
     public Long getId() {
@@ -55,13 +51,5 @@ public class Comment {
 
     public void setWriter(String writer) {
         this.writer = writer;
-    }
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
     }
 }
