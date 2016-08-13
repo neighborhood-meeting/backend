@@ -28,10 +28,15 @@ repositories {
 
 dependencies {
 	// Module related to JPA
-	compile("mysql:mysql-connector-java:5.1.31")
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.lazyluke:log4jdbc-remix:0.2.7')
+	compile("mysql:mysql-connector-java:5.1.31")
 	// Spring web module
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-security")
+    compile('org.springframework.security:spring-security-web:4.1.1.RELEASE')
+	compile('org.projectlombok:lombok:1.16.8')
 	// Test module
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
