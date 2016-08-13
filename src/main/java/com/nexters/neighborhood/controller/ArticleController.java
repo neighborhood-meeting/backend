@@ -68,9 +68,6 @@ public class ArticleController {
         if(article.getCreationDate()!=null) {
             article.setCreationDate(article.getCreationDate());
         }
-        if(article.getCommentId()!=null) {
-            article.setCommentId(article.getCommentId());
-        }
         if(article.getViewCount()!=null) {
             article.setViewCount(article.getViewCount());
         }

@@ -2,11 +2,9 @@ package com.nexters.neighborhood.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jinhaengji on 2016. 8. 13..
@@ -16,15 +14,19 @@ import java.util.Date;
 public class Article {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date creationDate;
     private String name;
     private String categoryId;
     private String writerId;
-    private Long commentId;
     private Long viewCount;
     private String contents;
+
+    @ManyToOne(fetch=FetchType.LAZY, optional=false)
+    @JoinColumn(name="articleId")
+    private List<Comment> comments;
 
     public Date getCreationDate() {
         return creationDate;
@@ -64,14 +66,6 @@ public class Article {
 
     public void setWriterId(String writerId) {
         this.writerId = writerId;
-    }
-
-    public Long getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Long commentId) {
-        this.commentId = commentId;
     }
 
     public Long getViewCount() {
