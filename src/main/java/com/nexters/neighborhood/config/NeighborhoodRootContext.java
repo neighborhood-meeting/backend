@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -30,5 +31,10 @@ public class NeighborhoodRootContext {
     @Autowired
     public DataSource dataSource(DataSource realDataSource) {
         return new Log4jdbcProxyDataSource(realDataSource);
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 }

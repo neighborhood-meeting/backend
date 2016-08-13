@@ -24,10 +24,10 @@ public class UserService {
         return new Authentication(token);
     }
 
-    public Authentication login(User user) {
-        User savedUser = userRepository.findOne(user.getId());
+    public Authentication login(String id, String password) {
+        User savedUser = userRepository.findOne(id);
 
-        if (savedUser.getPassword() != null && user.getPassword().equals(savedUser.getPassword())) {
+        if (password != null && password.equals(savedUser.getPassword())) {
             return new Authentication(savedUser.getToken());
         }
 
