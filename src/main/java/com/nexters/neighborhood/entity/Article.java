@@ -25,7 +25,7 @@ public class Article {
     private Date creationDate;
     private String contents;
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
+    @OneToMany(targetEntity = Comment.class, mappedBy = "article_id")
     private List<Comment> comments = new ArrayList<>();
 
     public Date getCreationDate() {

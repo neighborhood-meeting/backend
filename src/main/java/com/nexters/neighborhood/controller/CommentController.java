@@ -22,15 +22,10 @@ public class CommentController {
     private CommentRepository commentRepository;
 
     /** 댓글 조회 **/
-    @RequestMapping(value = "/comments/{articleId}", method = {RequestMethod.GET})
+    @RequestMapping(value = "/comments/{id}", method = {RequestMethod.GET})
     @ResponseBody
-    public Iterator<Comment> comments(@PathVariable Long articleId) {
-        List arrayList = new ArrayList();
-        arrayList.add(articleId);
-
-        List all = commentRepository.findAll(arrayList);
-
-        return all.iterator();
+    public Comment comments(@PathVariable Long id) {
+        return commentRepository.findOne(id);
     }
 
     /** 댓글 작성 **/

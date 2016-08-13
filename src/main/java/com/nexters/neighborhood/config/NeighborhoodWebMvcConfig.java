@@ -13,6 +13,6 @@ public class NeighborhoodWebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AuthenticationInterceptor());
+//        registry.addInterceptor(new AuthenticationInterceptor());
     }
 }
