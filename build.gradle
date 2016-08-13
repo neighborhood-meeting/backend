@@ -34,7 +34,6 @@ dependencies {
 	compile("mysql:mysql-connector-java:5.1.31")
 	// Spring web module
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile("org.springframework.boot:spring-boot-starter-security")
     compile('org.springframework.security:spring-security-web:4.1.1.RELEASE')
 	compile('org.projectlombok:lombok:1.16.8')
 	// Test module
