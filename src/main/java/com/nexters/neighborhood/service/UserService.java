@@ -21,20 +21,26 @@ public class UserService {
 
         userRepository.save(user);
 
-        Authentication authentication = new Authentication();
-        authentication.setToken(token);
-        return authentication;
+        return getAuthentication(token);
     }
 
     public Authentication signIn(String id, String password) {
         User savedUser = userRepository.findByIdAndPassword(id, password);
 
-        if (savedUser != null) {
-            Authentication authentication = new Authentication();
-            authentication.setToken(savedUser.getToken());
-            return authentication;
+        if (isSignInSuccess(savedUser)) {
+            return getAuthentication(savedUser.getToken());
         }
 
         return null;
+    }
+
+    private boolean isSignInSuccess(User savedUser) {
+        return savedUser != null;
+    }
+
+    private Authentication getAuthentication(String token) {
+        Authentication authentication = new Authentication();
+        authentication.setToken(token);
+        return authentication;
     }
 }
