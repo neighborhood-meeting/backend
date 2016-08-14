@@ -21,14 +21,18 @@ public class UserService {
 
         userRepository.save(user);
 
-        return new Authentication(token);
+        Authentication authentication = new Authentication();
+        authentication.setToken(token);
+        return authentication;
     }
 
-    public Authentication login(String id, String password) {
-        User savedUser = userRepository.findOne(id);
+    public Authentication signIn(String id, String password) {
+        User savedUser = userRepository.findByIdAndPassword(id, password);
 
-        if (password != null && password.equals(savedUser.getPassword())) {
-            return new Authentication(savedUser.getToken());
+        if (savedUser != null) {
+            Authentication authentication = new Authentication();
+            authentication.setToken(savedUser.getToken());
+            return authentication;
         }
 
         return null;

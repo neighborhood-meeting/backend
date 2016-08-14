@@ -9,3 +9,14 @@ spring:
       ddl-auto: create-drop
     database: mysql
     show-sql: true
+
+flyway:
+  enabled: false
+  check-location: true
+  locations: classpath:db/migration
+  baseline-version: LATEST
+  sql-migration-prefix: V
+  sql-migration-suffix: .sql
+  url: jdbc:mysql://127.0.0.1/neighborhood?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+  user: root
+  password: neighborhood

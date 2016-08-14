@@ -74,9 +74,6 @@ public class ArticleController {
         if(article.getContents()!=null) {
             article.setContents(article.getContents());
         }
-        if(article.getCategory()!=null) {
-            article.setCategory(article.getCategory());
-        }
 
         articleRepository.save(savedarticle);
 

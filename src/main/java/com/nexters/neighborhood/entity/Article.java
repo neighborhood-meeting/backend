@@ -17,15 +17,21 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
+
     private String categoryId;
+
     private String writerId;
+
     private Long viewCount;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date creationDate;
+
     private String contents;
 
-    @OneToMany(targetEntity = Comment.class, mappedBy = "article_id")
+    @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 
     public Date getCreationDate() {

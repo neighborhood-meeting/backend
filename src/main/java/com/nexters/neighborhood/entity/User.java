@@ -3,8 +3,6 @@ package com.nexters.neighborhood.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.authentication.encoding.BasePasswordEncoder;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import javax.persistence.*;
 
 @Data
@@ -38,11 +36,4 @@ public class User {
 
     @Column
     private String roomId;
-
-    @Transient
-    private BasePasswordEncoder basePasswordEncoder = new Md5PasswordEncoder();
-
-    public void setPassword(String password) {
-        this.password = basePasswordEncoder.encodePassword(password, null);
-    }
 }

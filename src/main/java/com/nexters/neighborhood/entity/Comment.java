@@ -15,10 +15,14 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date creationDate;
+
     private String contents;
+
     private String writer;
+
     private Long articleId;
 
     public Long getId() {
