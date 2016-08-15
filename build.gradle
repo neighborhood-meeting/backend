@@ -34,12 +34,16 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.lazyluke:log4jdbc-remix:0.2.7')
 	compile("mysql:mysql-connector-java:5.1.31")
+
 	// Spring web module
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.security:spring-security-web:4.1.1.RELEASE')
-	compile('org.projectlombok:lombok:1.16.8')
 
+	// Util library
+	compile('org.projectlombok:lombok:1.16.8')
+	compile('com.google.guava:guava:19.0')
 	compile('org.flywaydb:flyway-core:4.0.3')
+
 	// Test module
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

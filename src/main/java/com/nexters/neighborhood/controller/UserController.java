@@ -2,6 +2,10 @@ package com.nexters.neighborhood.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nexters.neighborhood.controller.exception.InvalidAccessException;
+import com.nexters.neighborhood.controller.exception.SignUpFailException;
+import com.nexters.neighborhood.controller.model.Authentication;
+import com.nexters.neighborhood.controller.model.IdAndPassword;
 import com.nexters.neighborhood.utility.EncryptUtils;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.service.UserService;
@@ -24,27 +28,15 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signIn")
     @ResponseBody
-    public ResponseEntity<String> signIn(@RequestBody IdAndPassword idAndPassword) throws Exception {
+    public ResponseEntity<String> signIn(@RequestBody IdAndPassword idAndPassword) throws InvalidAccessException, JsonProcessingException {
         Authentication authentication = userService.signIn(idAndPassword.getId(), EncryptUtils.getEncoededPassword(idAndPassword.getPassword()));
 
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(failResponse());
-        } else {
-            return ResponseEntity.status(HttpStatus.OK).body(successResponse(authentication));
-        }
-    }
-
-    private String failResponse() {
-        return "{error:fail}";
-    }
-
-    private String successResponse(Authentication authentication) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(authentication);
+        return ResponseEntity.status(HttpStatus.OK).body(successResponse(authentication));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/signUp")
     @ResponseBody
-    public ResponseEntity<String> signUp(@RequestBody User user) {
+    public ResponseEntity<String> signUp(@RequestBody User user) throws SignUpFailException {
         try {
             user.setPassword(EncryptUtils.getEncoededPassword(user.getPassword()));
 
@@ -52,7 +44,13 @@ public class UserController {
 
             return ResponseEntity.status(HttpStatus.OK).body(successResponse(authentication));
         } catch (Exception ignored) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(failResponse());
+            log.error("UserController SignUp Exception!", ignored);
+
+            throw new SignUpFailException();
         }
+    }
+
+    private String successResponse(Authentication authentication) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(authentication);
     }
 }

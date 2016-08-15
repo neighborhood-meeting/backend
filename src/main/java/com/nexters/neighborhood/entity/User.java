@@ -3,6 +3,8 @@ package com.nexters.neighborhood.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Data
@@ -14,6 +16,7 @@ public class User {
 
     @Id
     @Column(nullable = false)
+    @NotBlank
     private String token;
 
     @Column(nullable = false, unique = true)

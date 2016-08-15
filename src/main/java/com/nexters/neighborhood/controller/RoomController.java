@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.controller;
 
+import com.google.common.base.Optional;
 import com.nexters.neighborhood.entity.Room;
 import com.nexters.neighborhood.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

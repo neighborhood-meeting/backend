@@ -1,6 +1,7 @@
 package com.nexters.neighborhood.service;
 
-import com.nexters.neighborhood.controller.Authentication;
+import com.nexters.neighborhood.controller.model.Authentication;
+import com.nexters.neighborhood.controller.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public Authentication save(User user) {
-        String token = Authentication.issueToken();
-        user.setToken(token);
+        String issuedToken = Authentication.issueToken();
+        user.setToken(issuedToken);
 
         userRepository.save(user);
 
-        return getAuthentication(token);
+        return getAuthentication(issuedToken);
     }
 
     public Authentication signIn(String id, String password) {
@@ -31,7 +32,7 @@ public class UserService {
             return getAuthentication(savedUser.getToken());
         }
 
-        return null;
+        throw new InvalidAccessException();
     }
 
     private boolean isSignInSuccess(User savedUser) {
