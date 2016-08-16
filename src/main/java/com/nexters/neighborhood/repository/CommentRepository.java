@@ -1,7 +1,6 @@
 package com.nexters.neighborhood.repository;
 
 import com.nexters.neighborhood.entity.Comment;
-import com.sun.tools.javac.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

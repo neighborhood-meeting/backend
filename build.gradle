@@ -42,12 +42,20 @@ dependencies {
 	// Util library
 	compile('org.projectlombok:lombok:1.16.8')
 	compile('com.google.guava:guava:19.0')
-	compile('org.flywaydb:flyway-core:4.0.3')
 
 	// Test module
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+flyway {
+	url = 'jdbc:mysql://127.0.0.1:3306/neighborhood?autoReconnect=true&useUnicode=true&characterEncoding=utf8'
+	user = 'root'
+	password = 'neighborhood'
+	table = 'schema_history'
+	encoding = 'UTF-8'
+	target = '2'
+	baselineOnMigrate = false
+}
 
 eclipse {
 	classpath {

@@ -1,10 +1,10 @@
 package com.nexters.neighborhood.entity;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by jinhaengji on 2016. 8. 13..
@@ -20,8 +20,10 @@ public class Room {
     private String name;
     private String ownerId;
     private String description;
-    private Long articleId;
     private String notice;
+    private Long regionId;
+    @OneToMany(targetEntity = Article.class, mappedBy = "roomId")
+    private List<Article> articles = Lists.newArrayList();
 
     public Long getId() {
         return id;
@@ -53,14 +55,6 @@ public class Room {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
     }
 
     public String getNotice() {

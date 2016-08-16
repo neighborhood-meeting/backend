@@ -15,12 +15,14 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(nullable = false)
-    @NotBlank
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
     private String token;
 
     @Column(nullable = false, unique = true)
-    private String id;
+    private String userId;
 
     @Column(nullable = false)
     private String name;

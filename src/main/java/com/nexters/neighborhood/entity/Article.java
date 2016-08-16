@@ -31,6 +31,8 @@ public class Article {
 
     private String contents;
 
+    private Long roomId;
+
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 

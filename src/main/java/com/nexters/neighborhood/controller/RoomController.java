@@ -1,11 +1,9 @@
 package com.nexters.neighborhood.controller;
 
-import com.google.common.base.Optional;
 import com.nexters.neighborhood.entity.Room;
 import com.nexters.neighborhood.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -17,6 +15,32 @@ import java.util.List;
 public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
+
+    /** API Start **/
+    @RequestMapping(value = "/rooms/region/{regionId}",method = {RequestMethod.POST})
+    @ResponseBody
+    public String makeRoom(@PathVariable Long regionId, @RequestBody Room room) {
+        room.setRegionId(regionId);
+
+        roomRepository.save(room);
+
+        return room.toString();
+    }
+
+    @RequestMapping(value = "/rooms/region/{regionId}",method = {RequestMethod.GET})
+    @ResponseBody
+    public List<Room> findRoomsByRegionId(@PathVariable Long regionId) {
+        return roomRepository.findRoomsByRegionId(regionId);
+    }
+
+    /** 해당하는 방 정보 주기 **/
+    @RequestMapping(value = "/rooms/{id}",method = {RequestMethod.GET})
+    @ResponseBody
+    public Room rooms(@PathVariable Long id) { /** 정보가 post형식으로 body를 통해서 오기 때문에 **/
+        return roomRepository.findOne(id);
+    }
+
+    /** API End **/
 
     /** 모든 방 정보 전달하기 **/
     @RequestMapping(value = "/rooms", method = {RequestMethod.GET})
@@ -32,13 +56,6 @@ public class RoomController {
         roomRepository.save(room); /** 저장 **/
 
         return room.toString();
-    }
-
-    /** 해당하는 방 정보 주기 **/
-    @RequestMapping(value = "/rooms/{id}",method = {RequestMethod.GET})
-    @ResponseBody
-    public Room rooms(@PathVariable Long id) { /** 정보가 post형식으로 body를 통해서 오기 때문에 **/
-        return roomRepository.findOne(id);
     }
 
     /** 해당하는 방 삭제 **/
@@ -59,10 +76,6 @@ public class RoomController {
 
         if (room.getName() != null) {
             savedRoom.setName(room.getName());
-        }
-
-        if (room.getArticleId() != null) {
-            savedRoom.setArticleId(room.getArticleId());
         }
 
         if (room.getDescription() != null) {

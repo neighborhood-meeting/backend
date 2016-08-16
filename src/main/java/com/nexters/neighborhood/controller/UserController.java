@@ -11,7 +11,6 @@ import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,7 @@ public class UserController {
     public ResponseEntity<String> signIn(@RequestBody IdAndPassword idAndPassword) throws InvalidAccessException, JsonProcessingException {
         Authentication authentication = userService.signIn(idAndPassword.getId(), EncryptUtils.getEncoededPassword(idAndPassword.getPassword()));
 
-        return ResponseEntity.status(HttpStatus.OK).body(successResponse(authentication));
+        return ResponseEntity.ok(successResponse(authentication));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/signUp")
@@ -42,7 +41,7 @@ public class UserController {
 
             Authentication authentication = userService.save(user);
 
-            return ResponseEntity.status(HttpStatus.OK).body(successResponse(authentication));
+            return ResponseEntity.ok(successResponse(authentication));
         } catch (Exception ignored) {
             log.error("UserController SignUp Exception!", ignored);
 
