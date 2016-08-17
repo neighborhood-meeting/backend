@@ -36,6 +36,11 @@ public class Article {
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 
+    @PrePersist
+    void createdAt() {
+        this.creationDate = new Date();
+    }
+
     public Date getCreationDate() {
         return creationDate;
     }

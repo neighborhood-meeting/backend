@@ -9,7 +9,6 @@ CREATE TABLE neighborhood.users (
   `token` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY (`token`),
   UNIQUE KEY (`user_id`)
 );
 
@@ -26,7 +25,8 @@ CREATE TABLE neighborhood.room (
 CREATE TABLE neighborhood.category (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`name`)
 );
 
 CREATE TABLE neighborhood.article (

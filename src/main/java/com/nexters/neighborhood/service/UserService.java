@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public Authentication signIn(String id, String password) {
-        User savedUser = userRepository.findByIdAndPassword(id, password);
+        User savedUser = userRepository.findByUserIdAndPassword(id, password);
 
         if (isSignInSuccess(savedUser)) {
             return getAuthentication(savedUser.getToken());

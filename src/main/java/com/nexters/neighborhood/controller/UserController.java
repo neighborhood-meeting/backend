@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nexters.neighborhood.controller.exception.InvalidAccessException;
 import com.nexters.neighborhood.controller.exception.SignUpFailException;
 import com.nexters.neighborhood.controller.model.Authentication;
-import com.nexters.neighborhood.controller.model.IdAndPassword;
+import com.nexters.neighborhood.controller.model.UserIdAndPassword;
 import com.nexters.neighborhood.utility.EncryptUtils;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.service.UserService;
@@ -27,8 +27,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signIn")
     @ResponseBody
-    public ResponseEntity<String> signIn(@RequestBody IdAndPassword idAndPassword) throws InvalidAccessException, JsonProcessingException {
-        Authentication authentication = userService.signIn(idAndPassword.getId(), EncryptUtils.getEncoededPassword(idAndPassword.getPassword()));
+    public ResponseEntity<String> signIn(@RequestBody UserIdAndPassword userIdAndPassword) throws InvalidAccessException, JsonProcessingException {
+        Authentication authentication = userService.signIn(userIdAndPassword.getUserId(), EncryptUtils.getEncoededPassword(userIdAndPassword.getPassword()));
 
         return ResponseEntity.ok(successResponse(authentication));
     }
