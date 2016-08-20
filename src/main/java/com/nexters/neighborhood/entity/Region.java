@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 @Data
-@Entity
+@Entity(name = "regions")
 public class Region {
 
     @Id
@@ -24,10 +24,7 @@ public class Region {
     @OneToMany(targetEntity = Article.class, mappedBy = "regionId")
     private List<Article> articles = Lists.newArrayList();
 
-    @OneToMany
-    @JoinTable(name = "USER_REGION",
-            joinColumns = @JoinColumn(name = "REGION_ID"),
-            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    @ManyToMany(mappedBy="regions")
     private List<User> users = Lists.newArrayList();
 
     public void addUser(User user) {
