@@ -13,6 +13,7 @@ public class NeighborhoodWebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // TODO 운영할때에는 해당 Interceptor 주석을 풀어야 함!
 //        registry.addInterceptor(new AuthenticationInterceptor());
     }
 }

@@ -49,34 +49,4 @@ public class ArticleController {
 
         return "success!";
     }
-
-    /** 해당 방 수정 **/
-    @RequestMapping(value = "/articles/{id}", method = {RequestMethod.PUT})
-    @ResponseBody
-    public String articleModify(@PathVariable Long id, @RequestBody Article article) {
-        Article savedarticle = articleRepository.findOne(id);
-
-        if(article.getName()!=null) {
-            article.setName(article.getName());
-        }
-        if(article.getCategoryId()!=null) {
-            article.setCategoryId(article.getCategoryId());
-        }
-        if(article.getWriterId()!=null) {
-            article.setWriterId(article.getWriterId());
-        }
-        if(article.getCreationDate()!=null) {
-            article.setCreationDate(article.getCreationDate());
-        }
-        if(article.getViewCount()!=null) {
-            article.setViewCount(article.getViewCount());
-        }
-        if(article.getContents()!=null) {
-            article.setContents(article.getContents());
-        }
-
-        articleRepository.save(savedarticle);
-
-        return savedarticle.toString();
-    }
 }

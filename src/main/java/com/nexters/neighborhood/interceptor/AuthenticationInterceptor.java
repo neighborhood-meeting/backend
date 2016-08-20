@@ -53,7 +53,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     }
 
     private boolean validateCheckToken(String authenticationToken) {
-        User user = userRepository.findOne(authenticationToken);
+        User user = userRepository.findByToken(authenticationToken);
 
         if (user != null) {
             return true;

@@ -21,7 +21,7 @@ public class User {
     private String token;
 
     @Column(nullable = false, unique = true)
-    private String userId;
+    private String email;
 
     @Column(nullable = false)
     private String name;
@@ -32,19 +32,17 @@ public class User {
     @Column(nullable = false)
     private String sex;
 
-    @Column
     private String birthDate;
 
-    @Column
-    private String regionId;
-
-    @Column
-    private String imageUrl;
+    private String profileUrl;
 
     @Column
     @OneToMany
-    @JoinTable(name = "USER_ROOM",
+    @JoinTable(name = "USER_REGION",
         joinColumns = @JoinColumn(name = "USER_ID"),
-        inverseJoinColumns = @JoinColumn(name = "ROOM_ID"))
-    private List<Room> rooms;
+        inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
+    private List<Region> regions;
+
+    @OneToMany(targetEntity = Comment.class, mappedBy = "userId")
+    private List<Comment> comments;
 }

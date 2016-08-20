@@ -5,7 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nexters.neighborhood.controller.exception.InvalidAccessException;
 import com.nexters.neighborhood.controller.exception.SignUpFailException;
 import com.nexters.neighborhood.controller.model.Authentication;
-import com.nexters.neighborhood.controller.model.UserIdAndPassword;
+import com.nexters.neighborhood.controller.model.UserEmailAndPassword;
+import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.utility.EncryptUtils;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.service.UserService;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -27,8 +28,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signIn")
     @ResponseBody
-    public ResponseEntity<String> signIn(@RequestBody UserIdAndPassword userIdAndPassword) throws InvalidAccessException, JsonProcessingException {
-        Authentication authentication = userService.signIn(userIdAndPassword.getUserId(), EncryptUtils.getEncoededPassword(userIdAndPassword.getPassword()));
+    public ResponseEntity<String> signIn(@RequestBody UserEmailAndPassword userEmailAndPassword) throws InvalidAccessException, JsonProcessingException {
+        Authentication authentication = userService.signIn(userEmailAndPassword.getEmail(), EncryptUtils.getEncoededPassword(userEmailAndPassword.getPassword()));
 
         return ResponseEntity.ok(successResponse(authentication));
     }
@@ -47,6 +48,21 @@ public class UserController {
 
             throw new SignUpFailException();
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ResponseBody
+    public UserDto getUserInformation(@PathVariable Long id) {
+        User user = userService.findById(id);
+
+        UserDto userDto = new UserDto();
+        userDto.setEmail(user.getEmail());
+        userDto.setBirthDate(user.getBirthDate());
+        userDto.setName(user.getName());
+        userDto.setProfileUrl(user.getProfileUrl());
+        userDto.setSex(user.getSex());
+
+        return userDto;
     }
 
     private String successResponse(Authentication authentication) throws JsonProcessingException {

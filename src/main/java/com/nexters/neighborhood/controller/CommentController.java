@@ -1,14 +1,11 @@
 package com.nexters.neighborhood.controller;
 
-
-
+import com.google.common.collect.Lists;
+import com.nexters.neighborhood.dto.CommentDto;
 import com.nexters.neighborhood.entity.Comment;
 import com.nexters.neighborhood.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,16 +13,20 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class CommentController {
     @Autowired
     private CommentRepository commentRepository;
 
     /** 댓글 조회 **/
-    @RequestMapping(value = "/comments/{id}", method = {RequestMethod.GET})
+    @RequestMapping(value = "/comments", method = {RequestMethod.GET})
     @ResponseBody
-    public Comment comments(@PathVariable Long id) {
-        return commentRepository.findOne(id);
+    public List<CommentDto> comments(@RequestParam Long articleId) {
+        List<Comment> comments = commentRepository.findByArticleId(articleId);
+
+        List<CommentDto> commentDtos = Lists.newArrayList();
+
+        return commentDtos;
     }
 
     /** 댓글 작성 **/

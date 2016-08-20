@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public Authentication signIn(String id, String password) {
-        User savedUser = userRepository.findByUserIdAndPassword(id, password);
+        User savedUser = userRepository.findByEmailAndPassword(id, password);
 
         if (isSignInSuccess(savedUser)) {
             return getAuthentication(savedUser.getToken());
@@ -43,5 +43,13 @@ public class UserService {
         Authentication authentication = new Authentication();
         authentication.setToken(token);
         return authentication;
+    }
+
+    public User findByEmail(String account) {
+        return userRepository.findByEmail(account);
+    }
+
+    public User findById(Long id) {
+        return userRepository.findOne(id);
     }
 }
