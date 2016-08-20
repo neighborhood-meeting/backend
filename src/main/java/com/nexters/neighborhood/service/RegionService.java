@@ -1,5 +1,7 @@
 package com.nexters.neighborhood.service;
 
+import com.google.common.collect.Lists;
+import com.nexters.neighborhood.dto.RoomDto;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
@@ -12,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +40,7 @@ public class RegionService {
 
         region.setName(regionDto.getName());
         region.setDescription(regionDto.getDescription());
-        region.setNotice(region.getNotice());
+        region.setNotice(regionDto.getNotice());
 
         regionRepository.saveAndFlush(region);
     }
@@ -75,5 +79,30 @@ public class RegionService {
 
     private boolean isExceededLimitRegionCount(List<Region> regions) {
         return regions.size() == 3;
+    }
+
+    public List<RoomDto> findRegionsByUserId(Long userId) {
+        String sql = "select * from regions where id in (select region_id from user_region where user_id = ?)";
+
+        List<Map<String, Object>> queryResults = jdbcTemplate.queryForList(sql, new Object[]{userId});
+
+        List<RoomDto> rooms = Lists.newArrayList();
+
+        if (queryResults.isEmpty()) {
+            return Lists.newArrayList();
+        }
+
+        for (Map<String, Object> queryResult : queryResults) {
+            RoomDto room = new RoomDto();
+
+            room.setId((Long) queryResult.get("id"));
+            room.setDescription((String) queryResult.get("description"));
+            room.setName((String) queryResult.get("name"));
+            room.setNotice((String) queryResult.get("notice"));
+
+            rooms.add(room);
+        }
+
+        return rooms;
     }
 }
