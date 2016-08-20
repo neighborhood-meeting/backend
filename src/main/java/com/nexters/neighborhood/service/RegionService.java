@@ -10,8 +10,10 @@ import com.nexters.neighborhood.repository.RegionRepository;
 import com.nexters.neighborhood.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dark on 2016. 8. 20..
@@ -25,6 +27,9 @@ public class RegionService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public void save(RegionDto regionDto) {
         Region region = new Region();
@@ -45,17 +50,27 @@ public class RegionService {
             throw new ExceedLimitRegionCountException("가입할 수 있는 방의 최대 갯수를 넘었습니다.");
         }
 
+        if (isJoinedDuplicatedRoom(userIdAndRegionId)) {
+            throw new DuplicatedRoomCanNotJoinException("동일한 방에 다시 가입하실 수 없습니다.");
+        }
+
         Region region = regionRepository.findOne(userIdAndRegionId.getRegionId());
 
         user.addRegion(region);
 
-        try {
-            userRepository.save(user);
-        } catch (Exception e) {
-            log.error("RegionService joinRoom Fail! {}", e);
+        userRepository.save(user);
+    }
 
-            throw new DuplicatedRoomCanNotJoinException("동일한 방에 다시 가입하실 수 없습니다.");
+    private boolean isJoinedDuplicatedRoom(UserIdAndRegionId userIdAndRegionId) {
+        String sql = "select * from user_region where user_id = ? and region_id = ?";
+
+        List<Map<String, Object>> queryResults = jdbcTemplate.queryForList(sql, new Object[]{userIdAndRegionId.getUserId(), userIdAndRegionId.getRegionId()});
+
+        if (queryResults.isEmpty()) {
+            return false;
         }
+
+        return true;
     }
 
     private boolean isExceededLimitRegionCount(List<Region> regions) {

@@ -38,7 +38,7 @@ public class User {
     private String profileUrl;
 
     @Column
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "USER_REGION",
         joinColumns = @JoinColumn(name = "USER_ID"),
         inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
