@@ -18,12 +18,18 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String ownerId;
     private String description;
     private String notice;
     private Long regionId;
+
     @OneToMany(targetEntity = Article.class, mappedBy = "roomId")
     private List<Article> articles = Lists.newArrayList();
+
+    @OneToMany
+    @JoinTable(name = "USER_ROOM",
+            joinColumns = @JoinColumn(name = "ROOM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private List<User> users;
 
     public Long getId() {
         return id;
@@ -39,14 +45,6 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getDescription() {

@@ -22,6 +22,13 @@ CREATE TABLE neighborhood.room (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `user_room` (
+  `room_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  FOREIGN KEY (`room_id`) REFERENCES `room` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+);
+
 CREATE TABLE neighborhood.category (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,

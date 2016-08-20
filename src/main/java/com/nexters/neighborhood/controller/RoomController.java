@@ -13,10 +13,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class RoomController {
+
     @Autowired
     private RoomRepository roomRepository;
 
+//    @Autowired
+//    private UserRepository userRepository;
+
     /** API Start **/
+//    @RequestMapping(value = "/rooms/join/{roomId}",method = {RequestMethod.POST})
+//    @ResponseBody
+//    public String makeRoom(@PathVariable Long roomId, @RequestBody User user) {
+////        User savedUser = userRepository.findByToken(user.getToken());
+////        Room savedRoom = roomRepository.findOne(roomId);
+////
+////        List<Room> rooms = savedUser.getRooms();
+////        rooms.add(savedRoom);
+////
+////        userRepository.saveAndFlush(savedUser);
+//
+//        return "success";
+//    }
+
     @RequestMapping(value = "/rooms/region/{regionId}",method = {RequestMethod.POST})
     @ResponseBody
     public String makeRoom(@PathVariable Long regionId, @RequestBody Room room) {
@@ -80,10 +98,6 @@ public class RoomController {
 
         if (room.getDescription() != null) {
             savedRoom.setDescription(room.getDescription());
-        }
-
-        if (room.getOwnerId() != null) {
-            savedRoom.setOwnerId(room.getOwnerId());
         }
 
         if (room.getNotice() != null) {

@@ -33,6 +33,8 @@ public class Article {
 
     private Long roomId;
 
+    private String imageUrl;
+
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 

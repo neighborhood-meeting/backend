@@ -3,9 +3,8 @@ package com.nexters.neighborhood.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -40,5 +39,12 @@ public class User {
     private String regionId;
 
     @Column
-    private String roomId;
+    private String imageUrl;
+
+    @Column
+    @OneToMany
+    @JoinTable(name = "USER_ROOM",
+        joinColumns = @JoinColumn(name = "USER_ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROOM_ID"))
+    private List<Room> rooms;
 }
