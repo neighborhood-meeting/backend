@@ -1,4 +1,4 @@
-package com.nexters.neighborhood.controller.exception;
+package com.nexters.neighborhood.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

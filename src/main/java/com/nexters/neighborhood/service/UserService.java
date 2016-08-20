@@ -1,7 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.nexters.neighborhood.controller.model.Authentication;
-import com.nexters.neighborhood.controller.exception.InvalidAccessException;
+import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

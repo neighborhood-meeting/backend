@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.entity;
 
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,8 +42,12 @@ public class User {
     @JoinTable(name = "USER_REGION",
         joinColumns = @JoinColumn(name = "USER_ID"),
         inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private List<Region> regions;
+    private List<Region> regions = Lists.newArrayList();
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "userId")
-    private List<Comment> comments;
+    private List<Comment> comments = Lists.newArrayList();
+
+    public void addRegion(Region region) {
+        regions.add(region);
+    }
 }

@@ -2,8 +2,8 @@ package com.nexters.neighborhood.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nexters.neighborhood.controller.exception.InvalidAccessException;
-import com.nexters.neighborhood.controller.exception.SignUpFailException;
+import com.nexters.neighborhood.exception.InvalidAccessException;
+import com.nexters.neighborhood.exception.SignUpFailException;
 import com.nexters.neighborhood.controller.model.Authentication;
 import com.nexters.neighborhood.controller.model.UserEmailAndPassword;
 import com.nexters.neighborhood.dto.UserDto;
@@ -50,7 +50,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}.json")
     @ResponseBody
     public UserDto getUserInformation(@PathVariable Long id) {
         User user = userService.findById(id);

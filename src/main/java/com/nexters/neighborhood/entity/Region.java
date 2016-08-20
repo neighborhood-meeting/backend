@@ -28,5 +28,9 @@ public class Region {
     @JoinTable(name = "USER_REGION",
             joinColumns = @JoinColumn(name = "REGION_ID"),
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
-    private List<User> users;
+    private List<User> users = Lists.newArrayList();
+
+    public void addUser(User user) {
+        users.add(user);
+    }
 }
