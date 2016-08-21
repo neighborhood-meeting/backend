@@ -11,6 +11,6 @@ INSERT INTO user_region (region_id, user_id) VALUES (3, 2);
 
 INSERT INTO category (type) VALUES ('HELP');
 
-INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 1', '2016-08-21 16:27:33', 'article Name 1', '1', '0', '1');
-INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 2', '2016-08-21 16:27:33', 'article Name 2', '1', '0', '1');
-INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 3', '2016-08-21 16:27:33', 'article Name 3', '1', '0', '1');
+INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 1', 'article Name 1', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 2', 'article Name 2', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/articleMainImage.jpg', '1', 'article Contents 3', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
