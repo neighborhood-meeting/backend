@@ -6,8 +6,10 @@ import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.dto.CategoryDto;
 import com.nexters.neighborhood.dto.Writer;
 import com.nexters.neighborhood.entity.Article;
+import com.nexters.neighborhood.entity.Category;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.ArticleRepository;
+import com.nexters.neighborhood.repository.CategoryRepository;
 import com.nexters.neighborhood.repository.UserRepository;
 import com.nexters.neighborhood.utility.ServerUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,9 @@ public class ArticleService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public List<ArticleDto> findArticleDtoByRegionId(Long regionId) {
         List<Article> articles = articleRepository.findByRegionId(regionId);
 
@@ -38,7 +43,7 @@ public class ArticleService {
 
             setArticle(article, articleDto);
             setWriter(article, articleDto);
-            setCategory(articleDto);
+            setCategory(article.getCategoryId(), articleDto);
 
             articleDtos.add(articleDto);
         }
@@ -46,10 +51,13 @@ public class ArticleService {
         return articleDtos;
     }
 
-    private void setCategory(ArticleDto articleDto) {
+    private void setCategory(Long categoryId, ArticleDto articleDto) {
+        Category category = categoryRepository.findOne(categoryId);
+
         CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setCategoryId(1L);
-        categoryDto.setType("HELP");
+        categoryDto.setCategoryId(category.getId());
+        categoryDto.setType(category.getType());
+
         articleDto.setCategory(categoryDto);
     }
 
