@@ -52,7 +52,7 @@ CREATE TABLE neighborhood.comment (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `article_id` bigint(20) DEFAULT NULL,
   `contents` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `creation_date` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`article_id`) REFERENCES `article` (`id`),

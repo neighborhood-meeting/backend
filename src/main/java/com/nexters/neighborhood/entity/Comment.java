@@ -17,11 +17,16 @@ public class Comment {
     private Long id;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private Date createdAt;
 
     private String contents;
 
     private Long userId;
 
     private Long articleId;
+
+    @PrePersist
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 }

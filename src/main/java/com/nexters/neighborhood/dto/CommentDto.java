@@ -11,13 +11,13 @@ import java.util.Date;
 @Data
 public class CommentDto {
 
-    private Long id;
+    private Long commentId;
 
-    private Date creationDate;
+    private Date createdAt;
 
     private String contents;
 
-    private String writer;
+    private Writer writer;
 
     private Long articleId;
 }

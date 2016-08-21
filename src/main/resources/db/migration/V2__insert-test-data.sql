@@ -22,3 +22,10 @@ INSERT INTO article (article_main_image_url, category_id, contents, name, region
 INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', 'article Contents 5', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
 INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', 'article Contents 6', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
 INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 7', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '1');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '2');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '1');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '2');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '2');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', 'Article 1 Comment', '2016-08-21 16:27:33', '1');
