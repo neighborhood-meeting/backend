@@ -1,7 +1,6 @@
 package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
-import com.nexters.neighborhood.dto.RoomDto;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
@@ -79,28 +78,28 @@ public class RegionService {
         return regions.size() == 3;
     }
 
-    public List<RoomDto> findRegionsByUserId(Long userId) {
+    public List<RegionDto> findRegionsByUserId(Long userId) {
         String sql = "select * from regions where id in (select region_id from user_region where user_id = ?)";
 
         List<Map<String, Object>> queryResults = jdbcTemplate.queryForList(sql, new Object[]{userId});
 
-        List<RoomDto> rooms = Lists.newArrayList();
+        List<RegionDto> regions = Lists.newArrayList();
 
         if (queryResults.isEmpty()) {
             return Lists.newArrayList();
         }
 
         for (Map<String, Object> queryResult : queryResults) {
-            RoomDto room = new RoomDto();
+            RegionDto region = new RegionDto();
 
-            room.setId((Long) queryResult.get("id"));
-            room.setDescription((String) queryResult.get("description"));
-            room.setName((String) queryResult.get("name"));
-            room.setNotice((String) queryResult.get("notice"));
+            region.setRegionId((Long) queryResult.get("id"));
+            region.setDescription((String) queryResult.get("description"));
+            region.setName((String) queryResult.get("name"));
+            region.setNotice((String) queryResult.get("notice"));
 
-            rooms.add(room);
+            regions.add(region);
         }
 
-        return rooms;
+        return regions;
     }
 }

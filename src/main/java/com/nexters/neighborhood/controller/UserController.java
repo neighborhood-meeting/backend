@@ -65,6 +65,21 @@ public class UserController {
         return userDto;
     }
 
+//    @RequestMapping(method = RequestMethod.POST, value = "/profileUpload")
+//    @ResponseBody
+//    public UserDto getUserInformation(@PathVariable Long id) {
+//        User user = userService.findById(id);
+//
+//        UserDto userDto = new UserDto();
+//        userDto.setEmail(user.getEmail());
+//        userDto.setBirthDate(user.getBirthDate());
+//        userDto.setName(user.getName());
+//        userDto.setProfileUrl(user.getProfileUrl());
+//        userDto.setSex(user.getSex());
+//
+//        return userDto;
+//    }
+
     private String successResponse(Authentication authentication) throws JsonProcessingException {
         return objectMapper.writeValueAsString(authentication);
     }

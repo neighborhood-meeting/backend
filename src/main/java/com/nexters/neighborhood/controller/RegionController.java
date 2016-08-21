@@ -1,6 +1,5 @@
 package com.nexters.neighborhood.controller;
 
-import com.nexters.neighborhood.dto.RoomDto;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
@@ -9,7 +8,6 @@ import com.nexters.neighborhood.service.RegionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -41,7 +39,7 @@ public class RegionController {
 
     @RequestMapping(value = "/regions",method = {RequestMethod.GET})
     @ResponseBody
-    public List<RoomDto> joinRegion(@RequestParam Long userId) throws ExceedLimitRegionCountException, DuplicatedRoomCanNotJoinException {
+    public List<RegionDto> joinRegion(@RequestParam Long userId) throws ExceedLimitRegionCountException, DuplicatedRoomCanNotJoinException {
         return regionService.findRegionsByUserId(userId);
     }
 }
