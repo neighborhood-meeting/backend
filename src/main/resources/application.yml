@@ -6,6 +6,6 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     database: mysql
     show-sql: true
