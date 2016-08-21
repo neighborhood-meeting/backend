@@ -10,11 +10,15 @@ INSERT INTO user_region (region_id, user_id) VALUES (2, 1);
 INSERT INTO user_region (region_id, user_id) VALUES (3, 2);
 
 INSERT INTO category (type) VALUES ('HELP');
+INSERT INTO category (type) VALUES ('HELLO');
+INSERT INTO category (type) VALUES ('FREE');
+INSERT INTO category (type) VALUES ('SHOPPING');
+INSERT INTO category (type) VALUES ('LIGHTNING');
 
 INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 1', 'article Name 1', '1', '0', '1', '2016-08-21 16:27:33');
-INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 2', 'article Name 2', '1', '0', '1', '2016-08-21 16:27:33');
-INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 3', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
-INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 4', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
-INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 5', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
-INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 6', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '2', 'article Contents 2', 'article Name 2', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '3', 'article Contents 3', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '4', 'article Contents 4', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', 'article Contents 5', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', 'article Contents 6', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
 INSERT INTO article (article_main_image_url, category_id, contents, name, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', 'article Contents 7', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
