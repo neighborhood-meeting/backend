@@ -20,26 +20,28 @@ public class Article {
 
     private String name;
 
-    private String categoryId;
-
-    private String userId;
+    private Long categoryId;
 
     private Long viewCount;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private Date createdAt;
 
     private String contents;
 
     private Long regionId;
 
-    private String imageUrl;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userId")
+    private User user;
+
+    private String articleMainImage;
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 
     @PrePersist
     void createdAt() {
-        this.creationDate = new Date();
+        this.createdAt = new Date();
     }
 }

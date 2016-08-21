@@ -17,6 +17,5 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String category_url;
+    private String type;
 }

@@ -5,6 +5,7 @@ import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
+import com.nexters.neighborhood.utility.ServerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private static final String SERVER_IP = "52.78.120.152";
-
     public Authentication save(User user) {
         String issuedToken = Authentication.issueToken();
 
         user.setToken(issuedToken);
-        user.setProfileUrl(String.format("http://%s/%s", SERVER_IP, user.getProfileUrl()));
+        user.setProfileUrl(ServerUtils.makeImageUrl(user.getProfileUrl()));
 
         userRepository.save(user);
 
