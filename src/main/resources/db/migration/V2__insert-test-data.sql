@@ -1,5 +1,5 @@
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'ekdxhrl0096@daum.net', '아이유1', '1234', 'http://52.78.120.152/profile/iu.jpg', '', '653ab858-ce05-4f29-9652-fa1f7b6ad1c8');
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'ekdxhrl@daum.net', '아이유2', '1234', 'http://52.78.120.152/profile/iu.jpg', '여', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'ekdxhrl0096@daum.net', '아이유1', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/iu.jpg', '', '653ab858-ce05-4f29-9652-fa1f7b6ad1c8');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'ekdxhrl@daum.net', '아이유2', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/iu.jpg', '여', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
 
 INSERT INTO regions (description, name, notice) VALUES ("description 1", "Region 1", "notice 1!");
 INSERT INTO regions (description, name, notice) VALUES ("description 2", "Region 2", "notice 2!");
