@@ -22,7 +22,7 @@ public class UserService {
         String issuedToken = Authentication.issueToken();
 
         user.setToken(issuedToken);
-        user.setProfileUrl(ServerUtils.makeImageUrl(user.getProfileUrl()));
+        user.setProfileUrl(ServerUtils.makeProfileImageUrl(user.getProfileUrl()));
 
         userRepository.save(user);
 

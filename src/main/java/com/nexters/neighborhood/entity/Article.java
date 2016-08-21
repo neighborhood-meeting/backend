@@ -35,7 +35,7 @@ public class Article {
     @JoinColumn(name = "userId")
     private User user;
 
-    private String articleMainImage;
+    private String articleMainImageUrl;
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();

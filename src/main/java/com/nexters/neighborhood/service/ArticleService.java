@@ -56,7 +56,7 @@ public class ArticleService {
     private void setArticle(Article article, ArticleDto articleDto) {
         articleDto.setName(article.getName());
         articleDto.setArticleId(article.getId());
-        articleDto.setArticleMainImage(article.getArticleMainImage());
+        articleDto.setArticleMainImageUrl(article.getArticleMainImageUrl());
         articleDto.setCommentCount(article.getComments().size());
         articleDto.setContent(article.getContents());
         articleDto.setCreatedAt(article.getCreatedAt());
@@ -79,7 +79,7 @@ public class ArticleService {
 
         article.setName(articleRequestParam.getName());
         article.setCreatedAt(articleRequestParam.getCreatedAt());
-        article.setArticleMainImage(ServerUtils.makeImageUrl(articleRequestParam.getArticleMainImage()));
+        article.setArticleMainImageUrl(ServerUtils.makeArticleMainImageUrl(articleRequestParam.getArticleMainImage()));
         article.setCategoryId(articleRequestParam.getCategoryId());
         article.setContents(articleRequestParam.getContents());
         article.setRegionId(articleRequestParam.getRegionId());

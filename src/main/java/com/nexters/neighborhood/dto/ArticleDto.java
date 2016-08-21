@@ -14,7 +14,7 @@ public class ArticleDto {
     private String name;
     private String content;
     private Long viewCount;
-    private String articleMainImage;
+    private String articleMainImageUrl;
     private Integer commentCount;
     private Date createdAt;
     private Writer writer;
