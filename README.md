@@ -16,7 +16,7 @@ docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=neighborhood -d mysq
 
 1-4. Nginx Docker Make && Run
 
-docker run -d --name image-server -p 80:80 neighborhood-nginx
+docker run -d --net=host --name image-server -p 80:80 neighborhood-nginx
 
 2. How to know success?
 
