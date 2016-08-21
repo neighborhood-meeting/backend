@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -17,5 +18,7 @@ public class ArticleDto {
     private Integer commentCount;
     private Date createdAt;
     private Writer writer;
+    @JsonProperty("category")
+    private CategoryDto category;
 }
 

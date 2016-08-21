@@ -3,6 +3,7 @@ package com.nexters.neighborhood.service;
 import com.google.common.collect.Lists;
 import com.nexters.neighborhood.controller.model.ArticleRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
+import com.nexters.neighborhood.dto.CategoryDto;
 import com.nexters.neighborhood.dto.Writer;
 import com.nexters.neighborhood.entity.Article;
 import com.nexters.neighborhood.entity.User;
@@ -35,27 +36,42 @@ public class ArticleService {
         for (Article article : articles) {
             ArticleDto articleDto = new ArticleDto();
 
-            articleDto.setName(article.getName());
-            articleDto.setArticleId(article.getId());
-            articleDto.setArticleMainImage(article.getArticleMainImage());
-            articleDto.setCommentCount(article.getComments().size());
-            articleDto.setContent(article.getContents());
-            articleDto.setCreatedAt(article.getCreatedAt());
-            articleDto.setViewCount(article.getViewCount());
-
-            Writer writer = new Writer();
-
-            User user = article.getUser();
-            writer.setName(user.getName());
-            writer.setProfileUrl(user.getProfileUrl());
-            writer.setUserId(user.getId());
-
-            articleDto.setWriter(writer);
+            setArticle(article, articleDto);
+            setWriter(article, articleDto);
+            setCategory(articleDto);
 
             articleDtos.add(articleDto);
         }
 
         return articleDtos;
+    }
+
+    private void setCategory(ArticleDto articleDto) {
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setCategoryId(1L);
+        categoryDto.setType("HELP");
+        articleDto.setCategory(categoryDto);
+    }
+
+    private void setArticle(Article article, ArticleDto articleDto) {
+        articleDto.setName(article.getName());
+        articleDto.setArticleId(article.getId());
+        articleDto.setArticleMainImage(article.getArticleMainImage());
+        articleDto.setCommentCount(article.getComments().size());
+        articleDto.setContent(article.getContents());
+        articleDto.setCreatedAt(article.getCreatedAt());
+        articleDto.setViewCount(article.getViewCount());
+    }
+
+    private void setWriter(Article article, ArticleDto articleDto) {
+        Writer writer = new Writer();
+
+        User user = article.getUser();
+        writer.setName(user.getName());
+        writer.setProfileUrl(user.getProfileUrl());
+        writer.setUserId(user.getId());
+
+        articleDto.setWriter(writer);
     }
 
     public void save(ArticleRequestParam articleRequestParam) {
