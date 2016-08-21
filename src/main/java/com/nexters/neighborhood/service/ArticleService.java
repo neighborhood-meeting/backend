@@ -96,4 +96,23 @@ public class ArticleService {
 
         articleRepository.saveAndFlush(article);
     }
+
+    public List<ArticleDto> findByRegionIdAndCategoryType(Long regionId, String type) {
+        Category category = categoryRepository.findByType(type);
+        List<Article> articles = articleRepository.findByRegionIdAndCategoryId(regionId, category.getId());
+
+        List<ArticleDto> articleDtos = Lists.newArrayList();
+
+        for (Article article : articles) {
+            ArticleDto articleDto = new ArticleDto();
+
+            setArticle(article, articleDto);
+            setWriter(article, articleDto);
+            setCategory(article.getCategoryId(), articleDto);
+
+            articleDtos.add(articleDto);
+        }
+
+        return articleDtos;
+    }
 }

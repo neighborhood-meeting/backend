@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.controller;
 
+import com.google.common.collect.Lists;
 import com.nexters.neighborhood.controller.model.ArticleRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.entity.Article;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
@@ -36,6 +37,11 @@ public class ArticleController {
         return article.toString();
     }
 
+    @RequestMapping(value = "/articles/search", method = {RequestMethod.GET})
+    @ResponseBody
+    public List<ArticleDto> findByRegionIdAndCategoryType(@RequestParam Long regionId, @RequestParam String type) {
+        return articleService.findByRegionIdAndCategoryType(regionId, type);
+    }
 
 //    /** 모든 방 조회 **/
 //    @RequestMapping(value = "/articles", method = {RequestMethod.GET})
