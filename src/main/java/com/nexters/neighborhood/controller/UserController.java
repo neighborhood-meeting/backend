@@ -28,10 +28,10 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signIn")
     @ResponseBody
-    public ResponseEntity<String> signIn(@RequestBody UserEmailAndPassword userEmailAndPassword) throws InvalidAccessException, JsonProcessingException {
-        Authentication authentication = userService.signIn(userEmailAndPassword.getEmail(), EncryptUtils.getEncoededPassword(userEmailAndPassword.getPassword()));
+    public ResponseEntity<UserDto> signIn(@RequestBody UserEmailAndPassword userEmailAndPassword) throws InvalidAccessException, JsonProcessingException {
+        UserDto userDto = userService.signIn(userEmailAndPassword.getEmail(), EncryptUtils.getEncoededPassword(userEmailAndPassword.getPassword()));
 
-        return ResponseEntity.ok(successResponse(authentication));
+        return ResponseEntity.ok(userDto);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/signUp")

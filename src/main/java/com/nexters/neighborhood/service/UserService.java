@@ -1,6 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.nexters.neighborhood.controller.model.Authentication;
+import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
@@ -16,20 +17,34 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    private static final String SERVER_IP = "52.78.120.152";
+
     public Authentication save(User user) {
         String issuedToken = Authentication.issueToken();
+
         user.setToken(issuedToken);
+        user.setProfileUrl(String.format("http://%s/%s", SERVER_IP, user.getProfileUrl()));
 
         userRepository.save(user);
 
         return getAuthentication(issuedToken);
     }
 
-    public Authentication signIn(String id, String password) {
+    public UserDto signIn(String id, String password) {
         User savedUser = userRepository.findByEmailAndPassword(id, password);
 
         if (isSignInSuccess(savedUser)) {
-            return getAuthentication(savedUser.getToken());
+            UserDto userDto = new UserDto();
+
+            userDto.setUserId(savedUser.getId());
+            userDto.setEmail(savedUser.getEmail());
+            userDto.setProfileUrl(savedUser.getProfileUrl());
+            userDto.setName(savedUser.getName());
+            userDto.setSex(savedUser.getSex());
+            userDto.setBirthDate(savedUser.getBirthDate());
+            userDto.setToken(savedUser.getToken());
+
+            return userDto;
         }
 
         throw new InvalidAccessException();
@@ -43,10 +58,6 @@ public class UserService {
         Authentication authentication = new Authentication();
         authentication.setToken(token);
         return authentication;
-    }
-
-    public User findByEmail(String account) {
-        return userRepository.findByEmail(account);
     }
 
     public User findById(Long id) {
