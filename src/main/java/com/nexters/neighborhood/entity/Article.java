@@ -27,6 +27,7 @@ public class Article {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @Column(columnDefinition = "TEXT")
     private String contents;
 
     private Long regionId;
