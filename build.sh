@@ -2,7 +2,7 @@
 
 echo "git pull start!"
 
-git pull
+git pull origin master
 
 echo "git pull! Success!"
 
