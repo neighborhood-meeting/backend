@@ -9,3 +9,6 @@ spring:
       ddl-auto: validate
     database: mysql
     show-sql: true
+  multipart:
+    maxFileSiz: 20MB
+    maxRequestSize: 20MB

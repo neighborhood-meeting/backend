@@ -10,10 +10,18 @@ import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.utility.EncryptUtils;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.service.UserService;
+import com.nexters.neighborhood.utility.ServerUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 @Slf4j
 @RestController
@@ -65,20 +73,28 @@ public class UserController {
         return userDto;
     }
 
-//    @RequestMapping(method = RequestMethod.POST, value = "/profileUpload")
-//    @ResponseBody
-//    public UserDto getUserInformation(@PathVariable Long id) {
-//        User user = userService.findById(id);
+    @RequestMapping(value = "/uploadProfile", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadProfileImage(@RequestParam(value = "profileImage", required = true) MultipartFile profileImage, @RequestParam(value = "fileName", required = true) byte[] fileName) {
+//        String encodedFileName = new String(fileName, Charset.forName("UTF-8"));
 //
-//        UserDto userDto = new UserDto();
-//        userDto.setEmail(user.getEmail());
-//        userDto.setBirthDate(user.getBirthDate());
-//        userDto.setName(user.getName());
-//        userDto.setProfileUrl(user.getProfileUrl());
-//        userDto.setSex(user.getSex());
+//        DateTime nowTime = DateTime.now();
 //
-//        return userDto;
-//    }
+//        String destination = "http://" + ServerUtils.getSERVER_IP() + "/";
+
+        File imageFileDir = new File("~/Document/neighborhood/images/profile/");
+        if (!imageFileDir.exists()) {
+            imageFileDir.mkdir();
+        }
+
+        try {
+            profileImage.transferTo(new File(String.format("%s", imageFileDir)));
+        } catch (IOException e) {
+            log.error("Profile Image Upload Fail! ", e);
+        }
+
+        return "success";
+    }
 
     private String successResponse(Authentication authentication) throws JsonProcessingException {
         return objectMapper.writeValueAsString(authentication);

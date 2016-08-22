@@ -1,10 +1,13 @@
 package com.nexters.neighborhood.utility;
 
+import lombok.Getter;
+
 /**
  * Created by Dark on 2016. 8. 21..
  */
 public class ServerUtils {
 
+    @Getter
     private static final String SERVER_IP = "52.78.120.152";
 
     public static String makeProfileImageUrl(String url) {
