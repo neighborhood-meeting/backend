@@ -142,13 +142,26 @@ public class ArticleService {
     }
 
     public void participate(ParticipateRequestParam participateRequestParam) {
-        Participation participation = new Participation();
-//
-//        participation.setParticipantCount();
-//        participation.setParticipantCount();
-//        participation.setParticipantCount();
-//        participation.setParticipantCount();
+        User user = userRepository.findOne(participateRequestParam.getUserId());
+        Article article = articleRepository.findOne(participateRequestParam.getArticleId());
 
-        participationRepository.save(participation);
+        Participation savedParticipation = article.getParticipation();
+
+        if (savedParticipation == null) {
+            Participation participation = new Participation();
+            participation.addParticipantCount();
+            participation.setRecentParticipatedUser(user);
+
+            article.setParticipation(participation);
+
+            articleRepository.save(article);
+
+            return;
+        }
+
+        savedParticipation.addParticipantCount();
+        savedParticipation.setRecentParticipatedUser(user);
+
+        articleRepository.save(article);
     }
 }

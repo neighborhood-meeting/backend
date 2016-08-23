@@ -27,6 +27,15 @@ public class Participation {
 
     private Long participantCount;
 
+    public void addParticipantCount() {
+        if (participantCount == null) {
+            this.participantCount = 1L;
+            return;
+        }
+
+        this.participantCount++;
+    }
+
     @PostPersist
     void recentParticipatedDate() {
         recentParticipatedDate = new Date();
