@@ -12,7 +12,7 @@ import java.util.Date;
 public class ArticleDto {
     private Long articleId;
     private String name;
-    private String content;
+    private String contents;
     private Long viewCount;
     private String articleMainImageUrl;
     private Integer commentCount;

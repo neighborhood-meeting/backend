@@ -10,7 +10,7 @@ public class HelloController {
      * Health Check를 위한 Method.
      * @return String
      */
-    @RequestMapping("/hello")
+    @RequestMapping("/api/v1/hello")
     public String healthCheck() {
         return "hello!";
     }

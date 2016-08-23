@@ -66,7 +66,7 @@ public class ArticleService {
         articleDto.setArticleId(article.getId());
         articleDto.setArticleMainImageUrl(article.getArticleMainImageUrl());
         articleDto.setCommentCount(article.getComments().size());
-        articleDto.setContent(article.getContents());
+        articleDto.setContents(article.getContents());
         articleDto.setCreatedAt(article.getCreatedAt());
         articleDto.setViewCount(article.getViewCount());
     }
