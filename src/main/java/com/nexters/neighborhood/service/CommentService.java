@@ -1,6 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
+import com.nexters.neighborhood.controller.model.CommentRequestParam;
 import com.nexters.neighborhood.dto.CommentDto;
 import com.nexters.neighborhood.dto.Writer;
 import com.nexters.neighborhood.entity.Comment;
@@ -50,5 +51,15 @@ public class CommentService {
         }
 
         return commentDtos;
+    }
+
+    public void save(CommentRequestParam commentRequestParam) {
+        Comment comment = new Comment();
+
+        comment.setArticleId(commentRequestParam.getArticleId());
+        comment.setContents(commentRequestParam.getContents());
+        comment.setUserId(commentRequestParam.getUserId());
+
+        commentRepository.save(comment);
     }
 }
