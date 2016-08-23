@@ -38,6 +38,10 @@ public class Article {
 
     private String articleMainImageUrl;
 
+    @OneToOne
+    @JoinColumn(name = "participationId")
+    private Participation participation;
+
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();
 

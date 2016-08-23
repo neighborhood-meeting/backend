@@ -4,9 +4,11 @@ import com.google.common.collect.Lists;
 import com.nexters.neighborhood.controller.article.ArticleRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.dto.CategoryDto;
+import com.nexters.neighborhood.dto.ParticipationDto;
 import com.nexters.neighborhood.dto.Writer;
 import com.nexters.neighborhood.entity.Article;
 import com.nexters.neighborhood.entity.Category;
+import com.nexters.neighborhood.entity.Participation;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.ArticleRepository;
 import com.nexters.neighborhood.repository.CategoryRepository;
@@ -44,11 +46,29 @@ public class ArticleService {
             setArticle(article, articleDto);
             setWriter(article, articleDto);
             setCategory(article.getCategoryId(), articleDto);
+            setParticipation(article, articleDto);
 
             articleDtos.add(articleDto);
         }
 
         return articleDtos;
+    }
+
+    private void setParticipation(Article article, ArticleDto articleDto) {
+        Participation participation = article.getParticipation();
+
+        if (participation == null) {
+            ParticipationDto participationDto = new ParticipationDto();
+            participationDto.setParticipantCount(null);
+            participationDto.setRecentParticipatedUserName(null);
+            articleDto.setParticipationDto(participationDto);
+            return;
+        }
+
+        ParticipationDto participationDto = new ParticipationDto();
+        participationDto.setParticipantCount(participation.getParticipantCount());
+        participationDto.setRecentParticipatedUserName(participation.getRecentParticipatedUser().getName());
+        articleDto.setParticipationDto(participationDto);
     }
 
     private void setCategory(Long categoryId, ArticleDto articleDto) {

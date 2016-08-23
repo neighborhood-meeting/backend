@@ -20,5 +20,7 @@ public class ArticleDto {
     private Writer writer;
     @JsonProperty("category")
     private CategoryDto category;
+    @JsonProperty("participation")
+    private ParticipationDto participationDto;
 }
 
