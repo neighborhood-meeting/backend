@@ -2,6 +2,7 @@ package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
 import com.nexters.neighborhood.controller.article.ArticleRequestParam;
+import com.nexters.neighborhood.controller.article.ParticipateRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.dto.CategoryDto;
 import com.nexters.neighborhood.dto.ParticipationDto;
@@ -12,6 +13,7 @@ import com.nexters.neighborhood.entity.Participation;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.ArticleRepository;
 import com.nexters.neighborhood.repository.CategoryRepository;
+import com.nexters.neighborhood.repository.ParticipationRepository;
 import com.nexters.neighborhood.repository.UserRepository;
 import com.nexters.neighborhood.utility.ServerUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,9 @@ public class ArticleService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ParticipationRepository participationRepository;
 
     public List<ArticleDto> findArticleDtoByRegionId(Long regionId) {
         List<Article> articles = articleRepository.findByRegionId(regionId);
@@ -59,7 +64,7 @@ public class ArticleService {
 
         if (participation == null) {
             ParticipationDto participationDto = new ParticipationDto();
-            participationDto.setParticipantCount(null);
+            participationDto.setParticipantCount(0L);
             participationDto.setRecentParticipatedUserName(null);
             articleDto.setParticipationDto(participationDto);
             return;
@@ -134,5 +139,16 @@ public class ArticleService {
         }
 
         return articleDtos;
+    }
+
+    public void participate(ParticipateRequestParam participateRequestParam) {
+        Participation participation = new Participation();
+//
+//        participation.setParticipantCount();
+//        participation.setParticipantCount();
+//        participation.setParticipantCount();
+//        participation.setParticipantCount();
+
+        participationRepository.save(participation);
     }
 }

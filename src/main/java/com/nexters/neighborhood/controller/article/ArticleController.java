@@ -36,5 +36,12 @@ public class ArticleController {
     public List<ArticleDto> findByRegionIdAndCategoryType(@RequestParam Long regionId, @RequestParam String type) {
         return articleService.findByRegionIdAndCategoryType(regionId, type);
     }
-}
 
+    @RequestMapping(value = "/articles/participate", method = {RequestMethod.POST})
+    @ResponseBody
+    public String participate(@RequestBody ParticipateRequestParam participateRequestParam) {
+        articleService.participate(participateRequestParam);
+
+        return "success";
+    }
+}
