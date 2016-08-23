@@ -1,6 +1,9 @@
-<form action="/api/v1/users/uploadProfile" method="post" enctype="multipart/form-data">
-    학번: <input type="text" name="fileName" />
-    <br/>
+<form action="/api/v1/users/signUp" method="post" enctype="multipart/form-data">
+    email: <input type="text" name="email" value="test0096@daum.net"/><br/>
+    name: <input type="text" name="name" value="123"/><br/>
+    password: <input type="text" name="password" value="1234"/><br/>
+    sex: <input type="text" name="sex" value="123"/><br/>
+    birthDate: <input type="text" name="birthDate" value="890523"/><br/>
     리포트파일: <input type="file" name="profileImage" />
     <br/>
     <input type="submit" />
