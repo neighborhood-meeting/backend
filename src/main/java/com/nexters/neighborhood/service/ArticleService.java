@@ -154,6 +154,8 @@ public class ArticleService {
 
             article.setParticipation(participation);
 
+            participationRepository.save(participation);
+
             articleRepository.save(article);
 
             return;
