@@ -27,6 +27,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    private static final String DEFAULT_IMAGES_FILE_PATH = "/Users/Dark/Documents/neighborhood/images";
+
     public Authentication save(UserRequestParam userRequestParam) {
         String issuedToken = Authentication.issueToken();
 
@@ -83,25 +85,29 @@ public class UserService {
         DateTime nowTime = DateTime.now();
 
         String profilePreUrl = String.format("/profile/%s", nowTime.toString("yyMMdd"));
-        String defaultProfileFilePath = "/Users/Dark/Documents/neighborhood/images";
-
-        File imageFileDir = new File(String.format("%s/%s", defaultProfileFilePath, profilePreUrl));
-
-        if (!imageFileDir.exists()) {
-            imageFileDir.mkdir();
-        }
-
         String profileSuffixUrl = UUID.randomUUID().toString().replaceAll("-", "");
-        String nginxProfileSuffixUrl = "/" + profileSuffixUrl + ".jpg";
-        String imageFileSuffix = String.format("%s/%s", imageFileDir, nginxProfileSuffixUrl);
+
+        profileDirectoryRolling();
+
+        String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
 
         try {
-            profileImage.transferTo(new File(imageFileSuffix));
+            profileImage.transferTo(new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg")));
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
             return null;
         }
 
         return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
+    }
+
+    private void profileDirectoryRolling() {
+        DateTime nowTime = DateTime.now();
+
+        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/profile/%s", nowTime.toString("yyMMdd"))));
+
+        if (!imageFileDirectory.exists()) {
+            imageFileDirectory.mkdir();
+        }
     }
 }
