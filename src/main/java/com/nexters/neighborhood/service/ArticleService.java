@@ -1,7 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
-import com.nexters.neighborhood.controller.model.ArticleRequestParam;
+import com.nexters.neighborhood.controller.article.ArticleRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.dto.CategoryDto;
 import com.nexters.neighborhood.dto.Writer;

@@ -1,4 +1,4 @@
-package com.nexters.neighborhood.controller;
+package com.nexters.neighborhood.controller.category;
 
 import com.nexters.neighborhood.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,11 @@
-package com.nexters.neighborhood.controller;
+package com.nexters.neighborhood.controller.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nexters.neighborhood.controller.model.UserRequestParam;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.exception.SignUpFailException;
-import com.nexters.neighborhood.controller.model.Authentication;
-import com.nexters.neighborhood.controller.model.UserEmailAndPassword;
+import com.nexters.neighborhood.dto.Authentication;
+import com.nexters.neighborhood.dto.UserEmailAndPassword;
 import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.utility.EncryptUtils;
 import com.nexters.neighborhood.entity.User;

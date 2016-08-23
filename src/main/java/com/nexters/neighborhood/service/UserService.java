@@ -1,7 +1,7 @@
 package com.nexters.neighborhood.service;
 
-import com.nexters.neighborhood.controller.model.Authentication;
-import com.nexters.neighborhood.controller.model.UserRequestParam;
+import com.nexters.neighborhood.dto.Authentication;
+import com.nexters.neighborhood.controller.user.UserRequestParam;
 import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;

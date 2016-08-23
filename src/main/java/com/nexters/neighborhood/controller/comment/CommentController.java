@@ -1,6 +1,5 @@
-package com.nexters.neighborhood.controller;
+package com.nexters.neighborhood.controller.comment;
 
-import com.nexters.neighborhood.controller.model.CommentRequestParam;
 import com.nexters.neighborhood.dto.CommentDto;
 import com.nexters.neighborhood.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.nexters.neighborhood.controller.model;
+package com.nexters.neighborhood.controller.comment;
 
 import lombok.Data;
 

@@ -1,6 +1,5 @@
-package com.nexters.neighborhood.controller;
+package com.nexters.neighborhood.controller.article;
 
-import com.nexters.neighborhood.controller.model.ArticleRequestParam;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;

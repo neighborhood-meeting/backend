@@ -1,7 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
-import com.nexters.neighborhood.controller.model.CommentRequestParam;
+import com.nexters.neighborhood.controller.comment.CommentRequestParam;
 import com.nexters.neighborhood.dto.CommentDto;
 import com.nexters.neighborhood.dto.Writer;
 import com.nexters.neighborhood.entity.Comment;

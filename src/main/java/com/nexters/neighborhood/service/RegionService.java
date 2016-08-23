@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
-import com.nexters.neighborhood.controller.model.UserIdAndRegionId;
+import com.nexters.neighborhood.controller.user.UserIdAndRegionId;
 import com.nexters.neighborhood.entity.Region;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.RegionRepository;
