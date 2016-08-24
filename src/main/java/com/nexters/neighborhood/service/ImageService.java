@@ -17,7 +17,7 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-    private static final String DEFAULT_IMAGES_FILE_PATH = "/neighborhood/images";
+    private static final String DEFAULT_IMAGES_FILE_PATH = "/root/neighborhood/images";
 
     public String uploadProfileImage(MultipartFile profileImage) {
         DateTime nowTime = DateTime.now();
@@ -30,7 +30,18 @@ public class ImageService {
         String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
 
         try {
-            profileImage.transferTo(new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg")));
+            File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
+
+            if (!file.canExecute()) {
+                log.error("실행 불가능 파일!!!");
+            }
+            if (!file.canRead()) {
+                log.error("읽기 불가능!!");
+            }
+            if (!file.canWrite()) {
+                log.error("쓰기 불가능!!");
+            }
+            profileImage.transferTo(file);
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
             return null;
@@ -50,7 +61,17 @@ public class ImageService {
         String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
 
         try {
-            profileImage.transferTo(new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg")));
+            File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
+            if (!file.canExecute()) {
+                log.error("실행 불가능 파일!!!");
+            }
+            if (!file.canRead()) {
+                log.error("읽기 불가능!!");
+            }
+            if (!file.canWrite()) {
+                log.error("쓰기 불가능!!");
+            }
+            profileImage.transferTo(file);
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
             return null;
