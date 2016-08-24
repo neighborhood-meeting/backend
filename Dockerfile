@@ -1,7 +1,8 @@
 FROM java:8
 MAINTAINER Neighborhood Backend Server Developer
 
-RUN mkdir /neighborhood
+RUN mkdir -p /neighborhood/images/profile && \
+    mkdir -p /neighborhood/images/article
 
 ADD build/libs/* /neighborhood/
 

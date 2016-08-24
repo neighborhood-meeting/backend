@@ -21,4 +21,4 @@ docker stop neighborhood-server
 
 docker rm neighborhood-server
 
-docker run -d --net=host --name neighborhood-server -p 8080:8080 neighborhood
+docker run -d --net=host -v /neighborhood/images:/neighborhood/images --name neighborhood-server -p 8080:8080 neighborhood
