@@ -40,7 +40,7 @@ public class UserController {
         try {
             userRequestParam.setPassword(EncryptUtils.getEncoededPassword(userRequestParam.getPassword()));
 
-            Authentication authentication = userService.save(userRequestParam);
+            Authentication authentication = userService.signUp(userRequestParam);
 
             return ResponseEntity.ok(successResponse(authentication));
         } catch (Exception ignored) {

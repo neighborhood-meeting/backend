@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class ArticleDto {
     private Long articleId;
-    private String name;
+    private String title;
     private String contents;
     private Long viewCount;
     private String articleMainImageUrl;

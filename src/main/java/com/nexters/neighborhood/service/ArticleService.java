@@ -40,6 +40,9 @@ public class ArticleService {
     @Autowired
     private ParticipationRepository participationRepository;
 
+    @Autowired
+    private ImageService imageService;
+
     public List<ArticleDto> findArticleDtoByRegionId(Long regionId) {
         List<Article> articles = articleRepository.findByRegionId(regionId);
 
@@ -87,7 +90,7 @@ public class ArticleService {
     }
 
     private void setArticle(Article article, ArticleDto articleDto) {
-        articleDto.setName(article.getName());
+        articleDto.setTitle(article.getTitle());
         articleDto.setArticleId(article.getId());
         articleDto.setArticleMainImageUrl(article.getArticleMainImageUrl());
         articleDto.setCommentCount(article.getComments().size());
@@ -110,9 +113,8 @@ public class ArticleService {
     public void save(ArticleRequestParam articleRequestParam) {
         Article article = new Article();
 
-        article.setName(articleRequestParam.getName());
-        article.setCreatedAt(articleRequestParam.getCreatedAt());
-        article.setArticleMainImageUrl(ServerUtils.makeArticleMainImageUrl(articleRequestParam.getArticleMainImage()));
+        article.setTitle(articleRequestParam.getTitle());
+        article.setArticleMainImageUrl(imageService.uploadArticleMainImage(articleRequestParam.getArticleMainImage()));
         article.setCategoryId(articleRequestParam.getCategoryId());
         article.setContents(articleRequestParam.getContents());
         article.setRegionId(articleRequestParam.getRegionId());

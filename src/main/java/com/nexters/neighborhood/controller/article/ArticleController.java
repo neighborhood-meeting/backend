@@ -4,6 +4,8 @@ import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -25,7 +27,7 @@ public class ArticleController {
     /** 글 생성 **/
     @RequestMapping(value = "/articles", method = {RequestMethod.POST})
     @ResponseBody
-    public String articles(@RequestBody ArticleRequestParam article) {
+    public String articles(@ModelAttribute ArticleRequestParam article) {
         articleService.save(article);
 
         return article.toString();

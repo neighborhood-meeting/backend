@@ -1,6 +1,7 @@
 package com.nexters.neighborhood.controller.article;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -10,12 +11,10 @@ import java.util.Date;
 @Data
 public class ArticleRequestParam {
 
-    private String name;
+    private MultipartFile articleMainImage;
+    private String title;
+    private String contents;
     private Long categoryId;
     private Long writerId;
-    private Date createdAt;
-    private String contents;
     private Long regionId;
-    private String articleMainImage;
-    private Long roomId;
 }

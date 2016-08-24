@@ -6,16 +6,9 @@ import com.nexters.neighborhood.dto.UserDto;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
-import com.nexters.neighborhood.utility.ServerUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Created by Dark on 2016. 8. 13..
@@ -27,15 +20,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private static final String DEFAULT_IMAGES_FILE_PATH = "/Users/Dark/Documents/neighborhood/images";
+    @Autowired
+    private ImageService imageService;
 
-    public Authentication save(UserRequestParam userRequestParam) {
+    public Authentication signUp(UserRequestParam userRequestParam) {
         String issuedToken = Authentication.issueToken();
 
         User user = new User();
 
         user.setToken(issuedToken);
-        user.setProfileUrl(uploadImage(userRequestParam.getProfileImage()));
+        user.setProfileUrl(imageService.uploadProfileImage(userRequestParam.getProfileImage()));
         user.setName(userRequestParam.getName());
         user.setEmail(userRequestParam.getEmail());
         user.setBirthDate(userRequestParam.getBirthDate());
@@ -79,35 +73,5 @@ public class UserService {
         Authentication authentication = new Authentication();
         authentication.setToken(token);
         return authentication;
-    }
-
-    private String uploadImage(MultipartFile profileImage) {
-        DateTime nowTime = DateTime.now();
-
-        String profilePreUrl = String.format("/profile/%s", nowTime.toString("yyMMdd"));
-        String profileSuffixUrl = UUID.randomUUID().toString().replaceAll("-", "");
-
-        profileDirectoryRolling();
-
-        String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
-
-        try {
-            profileImage.transferTo(new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg")));
-        } catch (IOException e) {
-            log.error("Profile Image Upload Fail! ", e);
-            return null;
-        }
-
-        return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
-    }
-
-    private void profileDirectoryRolling() {
-        DateTime nowTime = DateTime.now();
-
-        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/profile/%s", nowTime.toString("yyMMdd"))));
-
-        if (!imageFileDirectory.exists()) {
-            imageFileDirectory.mkdir();
-        }
     }
 }

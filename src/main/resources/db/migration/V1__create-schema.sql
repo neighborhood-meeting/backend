@@ -48,7 +48,7 @@ CREATE TABLE neighborhood.article (
   `category_id` bigint(20) DEFAULT NULL,
   `contents` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `region_id` bigint(20) DEFAULT NULL,
   `view_count` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
