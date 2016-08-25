@@ -17,7 +17,7 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-    private static final String DEFAULT_IMAGES_FILE_PATH = "/neighborhood/images";
+    private static final String DEFAULT_IMAGES_FILE_PATH = "/Users/Dark/Documents/neighborhood/images";
 
     public String uploadProfileImage(MultipartFile profileImage) {
         DateTime nowTime = DateTime.now();
@@ -32,15 +32,6 @@ public class ImageService {
         try {
             File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
 
-            if (!file.canExecute()) {
-                log.error("실행 불가능 파일!!!");
-            }
-            if (!file.canRead()) {
-                log.error("읽기 불가능!!");
-            }
-            if (!file.canWrite()) {
-                log.error("쓰기 불가능!!");
-            }
             profileImage.transferTo(file);
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
@@ -56,21 +47,13 @@ public class ImageService {
         String profilePreUrl = String.format("/article/%s", nowTime.toString("yyMMdd"));
         String profileSuffixUrl = UUID.randomUUID().toString().replaceAll("-", "");
 
-        profileDirectoryRolling();
+        articleDirectoryRolling();
 
         String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
 
         try {
             File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
-            if (!file.canExecute()) {
-                log.error("실행 불가능 파일!!!");
-            }
-            if (!file.canRead()) {
-                log.error("읽기 불가능!!");
-            }
-            if (!file.canWrite()) {
-                log.error("쓰기 불가능!!");
-            }
+
             profileImage.transferTo(file);
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
@@ -84,6 +67,16 @@ public class ImageService {
         DateTime nowTime = DateTime.now();
 
         File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/profile/%s", nowTime.toString("yyMMdd"))));
+
+        if (!imageFileDirectory.exists()) {
+            imageFileDirectory.mkdir();
+        }
+    }
+
+    private void articleDirectoryRolling() {
+        DateTime nowTime = DateTime.now();
+
+        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/article/%s", nowTime.toString("yyMMdd"))));
 
         if (!imageFileDirectory.exists()) {
             imageFileDirectory.mkdir();
