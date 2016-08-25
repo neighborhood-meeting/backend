@@ -17,7 +17,7 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-    private static final String DEFAULT_IMAGES_FILE_PATH = "/Users/Dark/Documents/neighborhood/images";
+    private static final String DEFAULT_IMAGES_FILE_PATH = "/neighborhood/images";
 
     public String uploadProfileImage(MultipartFile profileImage) {
         DateTime nowTime = DateTime.now();
