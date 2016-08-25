@@ -51,7 +51,7 @@ public class NeighborhoodRootContext {
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(1000000);
+        multipartResolver.setMaxUploadSize(100000000);
         return multipartResolver;
     }
 
