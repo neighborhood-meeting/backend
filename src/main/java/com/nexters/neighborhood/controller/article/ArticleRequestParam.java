@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -19,8 +20,8 @@ public class ArticleRequestParam {
     private String contents;
     @NotBlank
     private String categoryType;
-    @NotBlank
+    @NotNull
     private Long writerId;
-    @NotBlank
+    @NotNull
     private Long regionId;
 }
