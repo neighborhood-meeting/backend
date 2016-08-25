@@ -18,10 +18,16 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping(value = "/articles", method = {RequestMethod.GET})
+    @RequestMapping(value = "/articles/regions/{regionId}", method = {RequestMethod.GET})
     @ResponseBody
-    public List<ArticleDto> findArticlesByRegionId(@RequestParam Long regionId) {
+    public List<ArticleDto> findArticlesByRegionId(@PathVariable Long regionId) {
         return articleService.findArticleDtoByRegionId(regionId);
+    }
+
+    @RequestMapping(value = "/articles/users/{userId}", method = {RequestMethod.GET})
+    @ResponseBody
+    public List<ArticleDto> findArticlesByUserId(@PathVariable Long userId) {
+        return articleService.findByUserId(userId);
     }
 
     /** 글 생성 **/

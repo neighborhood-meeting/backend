@@ -14,7 +14,7 @@ public class ArticleRequestParam {
     private MultipartFile articleMainImage;
     private String title;
     private String contents;
-    private Long categoryId;
+    private String categoryType;
     private Long writerId;
     private Long regionId;
 }

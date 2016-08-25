@@ -115,7 +115,8 @@ public class ArticleService {
 
         article.setTitle(articleRequestParam.getTitle());
         article.setArticleMainImageUrl(imageService.uploadArticleMainImage(articleRequestParam.getArticleMainImage()));
-        article.setCategoryId(articleRequestParam.getCategoryId());
+        Category category = categoryRepository.findByType(articleRequestParam.getCategoryType());
+        article.setCategoryId(category.getId());
         article.setContents(articleRequestParam.getContents());
         article.setRegionId(articleRequestParam.getRegionId());
         article.setUser(userRepository.findOne(articleRequestParam.getWriterId()));
@@ -167,5 +168,59 @@ public class ArticleService {
         savedParticipation.setRecentParticipatedUser(user);
 
         articleRepository.save(article);
+    }
+
+    public List<ArticleDto> findByUserId(Long userId) {
+        List<Article> articles = articleRepository.findByUserId(userId);
+
+        List<ArticleDto> articleDtos = Lists.newArrayList();
+
+        for (Article article : articles) {
+            ArticleDto articleDto = new ArticleDto();
+
+            setParticipationDto(article, articleDto);
+
+            articleDto.setTitle(article.getTitle());
+            setCategoryDto(article, articleDto);
+            setWriter(article, articleDto);
+
+            articleDto.setCreatedAt(article.getCreatedAt());
+            articleDto.setArticleId(article.getId());
+            articleDto.setArticleMainImageUrl(article.getArticleMainImageUrl());
+            articleDto.setCommentCount(article.getComments().size());
+            articleDto.setContents(article.getContents());
+            articleDto.setViewCount(article.getViewCount());
+
+            articleDtos.add(articleDto);
+        }
+
+        return articleDtos;
+    }
+
+    private void setCategoryDto(Article article, ArticleDto articleDto) {
+        Category category = categoryRepository.findOne(article.getCategoryId());
+        CategoryDto category1 = new CategoryDto();
+        category1.setCategoryId(category.getId());
+        category1.setType(category.getType());
+        articleDto.setCategory(category1);
+    }
+
+    private void setParticipationDto(Article article, ArticleDto articleDto) {
+        Participation participation = article.getParticipation();
+
+        if (participation == null) {
+            ParticipationDto participationDto = new ParticipationDto();
+            participationDto.setRecentParticipatedUserName(null);
+            participationDto.setParticipantCount(0L);
+
+            articleDto.setParticipationDto(participationDto);
+            return;
+        }
+
+        ParticipationDto participationDto = new ParticipationDto();
+        participationDto.setRecentParticipatedUserName(participation.getRecentParticipatedUser().getName());
+        participationDto.setParticipantCount(participation.getParticipantCount());
+
+        articleDto.setParticipationDto(participationDto);
     }
 }
