@@ -68,7 +68,6 @@ public class ArticleService {
         article.setTitle(articleRequestParam.getTitle());
         article.setArticleMainImageUrl(imageService.uploadArticleMainImage(articleRequestParam.getArticleMainImage()));
         Category category = categoryRepository.findByType(articleRequestParam.getCategoryType());
-        log.error("category!!!:" + category);
         article.setCategoryId(category.getId());
         article.setContents(articleRequestParam.getContents());
         article.setRegionId(articleRequestParam.getRegionId());

@@ -42,6 +42,10 @@ public class ImageService {
     }
 
     public String uploadArticleMainImage(MultipartFile profileImage) {
+        if (profileImage == null) {
+            return null;
+        }
+
         DateTime nowTime = DateTime.now();
 
         String profilePreUrl = String.format("/article/%s", nowTime.toString("yyMMdd"));

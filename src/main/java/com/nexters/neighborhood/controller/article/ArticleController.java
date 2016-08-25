@@ -3,6 +3,7 @@ package com.nexters.neighborhood.controller.article;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +36,7 @@ public class ArticleController {
     /** 글 생성 **/
     @RequestMapping(value = "/articles", method = {RequestMethod.POST})
     @ResponseBody
-    public String articles(@ModelAttribute ArticleRequestParam article) {
+    public String articles(@Validated @ModelAttribute ArticleRequestParam article) {
         articleService.save(article);
 
         return article.toString();
