@@ -3,6 +3,7 @@ package com.nexters.neighborhood.repository;
 import com.nexters.neighborhood.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,6 +18,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
 
     List<Article> findByUserId(Long userId);
 
-    @Query(value = "SELECT a FROM article a WHERE a.title LIKE '%?1%'", nativeQuery = true)
-    List<Article> findLikeTitle(String title);
+    @Query(value = "SELECT * FROM article a WHERE a.title LIKE CONCAT('%',:title,'%')", nativeQuery = true)
+    List<Article> findLikeTitle(@Param("title") String title);
 }

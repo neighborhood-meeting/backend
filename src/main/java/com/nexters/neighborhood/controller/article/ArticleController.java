@@ -3,6 +3,7 @@ package com.nexters.neighborhood.controller.article;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,9 +51,9 @@ public class ArticleController {
     }
 
     /** Title like 검색 **/
-    @RequestMapping(value = "/articles/searchTitle", method = {RequestMethod.GET})
+    @RequestMapping(value = "/articles/search/title/{title}", method = {RequestMethod.GET})
     @ResponseBody
-    public List<ArticleDto> findLikeTitle(@RequestParam String title) {
+    public List<ArticleDto> findLikeTitle(@PathVariable String title) {
         return articleService.findLikeTitle(title);
     }
 
