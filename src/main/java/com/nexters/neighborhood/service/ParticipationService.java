@@ -19,4 +19,12 @@ public class ParticipationService {
     public List<Participation> findByUserId(Long userId) {
         return participationRepository.findByUserId(userId);
     }
+
+    public Boolean isParticipated(Long userId, Long articleId) {
+        Participation participation = participationRepository.findByUserIdAndArticleId(userId, articleId);
+        if (participation == null) {
+            return false;
+        }
+        return true;
+    }
 }

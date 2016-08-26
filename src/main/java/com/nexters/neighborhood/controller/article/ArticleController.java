@@ -93,5 +93,10 @@ public class ArticleController {
         return articleDtos;
     }
 
+    @RequestMapping(value = "/articles/isParticipated", method = {RequestMethod.GET})
+    @ResponseBody
+    public Boolean isParticipated(@RequestParam Long userId, @RequestParam Long articleId) {
+        return participationService.isParticipated(userId, articleId);
+    }
 
 }
