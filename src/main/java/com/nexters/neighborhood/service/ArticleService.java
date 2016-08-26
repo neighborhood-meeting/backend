@@ -88,6 +88,7 @@ public class ArticleService {
             setArticle(article, articleDto);
             setWriter(article, articleDto);
             setCategory(article.getCategoryId(), articleDto);
+            setParticipationDto(article, articleDto);
 
             articleDtos.add(articleDto);
         }
@@ -96,12 +97,22 @@ public class ArticleService {
     }
 
     public void participate(ParticipateRequestParam participateRequestParam) {
+        // 이미 가입한 사람이면 제거 시작
+        Participation participation1 = participationRepository.findByUserIdAndArticleId(participateRequestParam.getUserId(), participateRequestParam.getArticleId());
+
+        if (participation1 != null) {
+            participationRepository.delete(participation1);
+            return;
+        }
+
+        // 이미 가입한 사람이면 제거 끝
+
         User user = userRepository.findOne(participateRequestParam.getUserId());
         Article article = articleRepository.findOne(participateRequestParam.getArticleId());
 
         Participation participation = new Participation();
 
-//        participation.setParticipatedArticle(article);
+        participation.setParticipatedArticle(article);
         participation.setParticipatedUser(user);
 
         participationRepository.save(participation);
@@ -123,18 +134,18 @@ public class ArticleService {
 
 
     private void setParticipation(Article article, ArticleDto articleDto) {
-        ParticipationDto participationDto1 = new ParticipationDto();
-//        participationDto1.setParticipantCount(participationRepository.findByArticleIdCount(article.getId()));
+        ParticipationDto participationDto = new ParticipationDto();
+        participationDto.setParticipantCount(participationRepository.findByArticleIdCount(article.getId()));
 
-//        User user = participationRepository.findByArticleIdOrderParticipatedAt(article.getId());
+        Participation participation = participationRepository.findByArticleIdOrderParticipatedAt(article.getId());
 
-//        if (user == null) {
-//            participationDto1.setRecentParticipatedUserName(null);
-//        } else {
-//            participationDto1.setRecentParticipatedUserName(user.getName());
-//        }
+        if (participation == null) {
+            participationDto.setRecentParticipatedUserName(null);
+        } else {
+            participationDto.setRecentParticipatedUserName(participation.getParticipatedUser().getName());
+        }
 
-        articleDto.setParticipationDto(participationDto1);
+        articleDto.setParticipationDto(participationDto);
     }
 
     private void setCategory(Long categoryId, ArticleDto articleDto) {
@@ -202,20 +213,20 @@ public class ArticleService {
     }
 
     private void setParticipationDto(Article article, ArticleDto articleDto) {
-//        List<Participation> participations = participationRepository.findByArticleId(article.getId());
-//
-//        if (participations == null || participations.isEmpty()) {
-//            ParticipationDto participationDto = new ParticipationDto();
-//            participationDto.setRecentParticipatedUserName(null);
-//            participationDto.setParticipantCount(0L);
-//
-//            articleDto.setParticipationDto(participationDto);
-//            return;
-//        }
+        List<Participation> participations = participationRepository.findByArticleId(article.getId());
+
+        if (participations == null || participations.isEmpty()) {
+            ParticipationDto participationDto = new ParticipationDto();
+            participationDto.setRecentParticipatedUserName(null);
+            participationDto.setParticipantCount(0L);
+
+            articleDto.setParticipationDto(participationDto);
+            return;
+        }
 
         ParticipationDto participationDto = new ParticipationDto();
-//        participationDto.setRecentParticipatedUserName(participationRepository.findByArticleIdOrderParticipatedAt(article.getId()).getName());
-//        participationDto.setParticipantCount(participationRepository.findByArticleIdCount(article.getId()));
+        participationDto.setRecentParticipatedUserName(participationRepository.findByArticleIdOrderParticipatedAt(article.getId()).getParticipatedUser().getName());
+        participationDto.setParticipantCount(participationRepository.findByArticleIdCount(article.getId()));
 
         articleDto.setParticipationDto(participationDto);
     }
@@ -232,19 +243,4 @@ public class ArticleService {
         articleRepository.save(savedArticle);
     }
 
-    public boolean isAlreadyParticipated(ParticipateRequestParam participateRequestParam) {
-//        List<Participation> participations = participationRepository.findByUserId(participateRequestParam.getUserId());
-//
-//        for (Participation participation : participations) {
-//            Article participatedArticle = participation.getParticipatedArticle();
-//
-//            if (participatedArticle.getId() == participateRequestParam.getArticleId()) {
-//                articleRepository.delete(participatedArticle);
-//
-//                return true;
-//            }
-//        }
-
-        return false;
-    }
 }

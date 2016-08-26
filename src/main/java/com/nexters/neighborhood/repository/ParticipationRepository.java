@@ -13,12 +13,15 @@ import java.util.List;
  * Created by Dark on 2016. 8. 24..
  */
 public interface ParticipationRepository extends JpaRepository<Participation,Long> {
-//    List<Participation> findByArticleId(Long id);
+    @Query(value = "SELECT * FROM participation p WHERE p.article_id = ?1", nativeQuery = true)
+    List<Participation> findByArticleId(Long articleId);
 
-//    @Query(value = "SELECT count(*) FROM participation p WHERE p.article_id = ?1", nativeQuery = true)
-//    Long findByArticleIdCount(Long id);
+    @Query(value = "SELECT count(*) FROM participation p WHERE p.article_id = ?1", nativeQuery = true)
+    Long findByArticleIdCount(Long id);
 
-//    @Query(value = "SELECT * FROM participation p WHERE p.articleId = :id LIMIT 1", nativeQuery = true)
-//    User findByArticleIdOrderParticipatedAt(@Param("id") Long id);
-//    List<Participation> findByUserId(Long userId);
+    @Query(value = "SELECT * FROM participation p WHERE p.article_id = :id order by participated_at desc limit 1", nativeQuery = true)
+    Participation findByArticleIdOrderParticipatedAt(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM participation p WHERE p.article_id = :articleId AND p.user_id = :userId", nativeQuery = true)
+    Participation findByUserIdAndArticleId(@Param("userId") Long userId, @Param("articleId")Long articleId);
 }

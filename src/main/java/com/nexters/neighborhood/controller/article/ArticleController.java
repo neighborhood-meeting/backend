@@ -1,12 +1,10 @@
 package com.nexters.neighborhood.controller.article;
 
 import com.nexters.neighborhood.dto.ArticleDto;
+import com.nexters.neighborhood.entity.Participation;
 import com.nexters.neighborhood.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class ArticleController {
         return articleService.findArticleDtoByRegionId(regionId);
     }
 
-    /** userId를 통한 Article 목록 가져오기 **/
+    /** 내가 쓴 Article 목록 가져오기 **/
     @RequestMapping(value = "/articles/users/{userId}", method = {RequestMethod.GET})
     @ResponseBody
     public List<ArticleDto> findArticlesByUserId(@PathVariable Long userId) {
@@ -70,11 +68,7 @@ public class ArticleController {
     @RequestMapping(value = "/articles/participate", method = {RequestMethod.POST})
     @ResponseBody
     public String participate(@RequestBody ParticipateRequestParam participateRequestParam) {
-//        if (articleService.isAlreadyParticipated(participateRequestParam)) {
-//            return "delete participated user";
-//        } else {
         articleService.participate(participateRequestParam);
-//        }
 
         return "success";
     }
