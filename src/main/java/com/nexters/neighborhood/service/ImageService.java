@@ -31,14 +31,16 @@ public class ImageService {
 
         try {
             File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
-
-            profileImage.transferTo(file);
+            if (profileImage == null) {
+                return "http://" + ServerUtils.getSERVER_IP() + "profile/iu.jpg";
+            } else {
+                profileImage.transferTo(file);
+                return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
+            }
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
             return null;
         }
-
-        return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
     }
 
     public String uploadArticleMainImage(MultipartFile profileImage) {
@@ -58,13 +60,16 @@ public class ImageService {
         try {
             File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
 
-            profileImage.transferTo(file);
+            if (profileImage == null) {
+                return "http://" + ServerUtils.getSERVER_IP() + "profile/iu.jpg";
+            } else {
+                profileImage.transferTo(file);
+                return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
+            }
         } catch (IOException e) {
             log.error("Profile Image Upload Fail! ", e);
             return null;
         }
-
-        return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
     }
 
     private void profileDirectoryRolling() {

@@ -21,6 +21,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
     @Query(value = "SELECT * FROM article a WHERE a.user_id = :userId order by created_at desc", nativeQuery = true)
     List<Article> findByUserId(@Param("userId") Long userId);
 
-    @Query(value = "SELECT * FROM article a WHERE a.title LIKE CONCAT('%',:title,'%')", nativeQuery = true)
+    @Query(value = "SELECT * FROM article a WHERE a.title LIKE CONCAT('%',:title,'%') order by created_at desc", nativeQuery = true)
     List<Article> findLikeTitle(@Param("title") String title);
 }

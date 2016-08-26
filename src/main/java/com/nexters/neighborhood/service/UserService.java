@@ -3,6 +3,7 @@ package com.nexters.neighborhood.service;
 import com.nexters.neighborhood.dto.Authentication;
 import com.nexters.neighborhood.controller.user.UserRequestParam;
 import com.nexters.neighborhood.dto.UserDto;
+import com.nexters.neighborhood.exception.DuplicatedUserEmailException;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.entity.User;
 import com.nexters.neighborhood.repository.UserRepository;
@@ -36,7 +37,12 @@ public class UserService {
         user.setSex(userRequestParam.getSex());
         user.setPassword(userRequestParam.getPassword());
 
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new DuplicatedUserEmailException();
+        }
+
 
         return getAuthentication(issuedToken);
     }
