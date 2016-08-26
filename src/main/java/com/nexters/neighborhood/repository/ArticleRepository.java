@@ -12,7 +12,8 @@ import java.util.List;
  */
 public interface ArticleRepository extends JpaRepository<Article, Long>{
 
-    List<Article> findByRegionId(Long regionId);
+    @Query(value = "SELECT * FROM article a WHERE a.region_id = :regionId order by created_at desc", nativeQuery = true)
+    List<Article> findByRegionId(@Param("regionId") Long regionId);
 
     List<Article> findByRegionIdAndCategoryId(Long regionId, Long id);
 
