@@ -2,6 +2,7 @@ package com.nexters.neighborhood.controller.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nexters.neighborhood.exception.DuplicatedUserEmailException;
 import com.nexters.neighborhood.exception.InvalidAccessException;
 import com.nexters.neighborhood.exception.SignUpFailException;
 import com.nexters.neighborhood.dto.Authentication;
@@ -36,18 +37,12 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/signUp")
     @ResponseBody
-    public ResponseEntity<String> signUp(@ModelAttribute UserRequestParam userRequestParam) throws SignUpFailException {
-        try {
-            userRequestParam.setPassword(EncryptUtils.getEncoededPassword(userRequestParam.getPassword()));
+    public ResponseEntity<String> signUp(@ModelAttribute UserRequestParam userRequestParam) throws SignUpFailException, DuplicatedUserEmailException, JsonProcessingException {
+        userRequestParam.setPassword(EncryptUtils.getEncoededPassword(userRequestParam.getPassword()));
 
-            Authentication authentication = userService.signUp(userRequestParam);
+        Authentication authentication = userService.signUp(userRequestParam);
 
-            return ResponseEntity.ok(successResponse(authentication));
-        } catch (Exception ignored) {
-            log.error("UserController SignUp Exception!", ignored);
-
-            throw new SignUpFailException();
-        }
+        return ResponseEntity.ok(successResponse(authentication));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}.json")

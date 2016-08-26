@@ -24,7 +24,7 @@ public class UserService {
     @Autowired
     private ImageService imageService;
 
-    public Authentication signUp(UserRequestParam userRequestParam) {
+    public Authentication signUp(UserRequestParam userRequestParam) throws DuplicatedUserEmailException{
         String issuedToken = Authentication.issueToken();
 
         User user = new User();
@@ -42,7 +42,6 @@ public class UserService {
         } catch (Exception e) {
             throw new DuplicatedUserEmailException();
         }
-
 
         return getAuthentication(issuedToken);
     }
