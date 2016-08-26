@@ -24,4 +24,7 @@ public interface ParticipationRepository extends JpaRepository<Participation,Lon
 
     @Query(value = "SELECT * FROM participation p WHERE p.article_id = :articleId AND p.user_id = :userId", nativeQuery = true)
     Participation findByUserIdAndArticleId(@Param("userId") Long userId, @Param("articleId")Long articleId);
+
+    @Query(value = "SELECT * FROM participation p WHERE p.user_id = :userId", nativeQuery = true)
+    List<Participation> findByUserId(@Param("userId") Long userId);
 }

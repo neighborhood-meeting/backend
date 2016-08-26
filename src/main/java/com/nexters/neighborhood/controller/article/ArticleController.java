@@ -1,8 +1,10 @@
 package com.nexters.neighborhood.controller.article;
 
+import com.google.common.collect.Lists;
 import com.nexters.neighborhood.dto.ArticleDto;
 import com.nexters.neighborhood.entity.Participation;
 import com.nexters.neighborhood.service.ArticleService;
+import com.nexters.neighborhood.service.ParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ParticipationService participationService;
 
     /** regionId를 통한 Article 목록 가져오기 **/
     @RequestMapping(value = "/articles/regions/{regionId}", method = {RequestMethod.GET})
@@ -72,4 +77,21 @@ public class ArticleController {
 
         return "success";
     }
+
+    /** 내가 어떤 글에 참여했는지 알아내기 **/
+    @RequestMapping(value = "/articles/participate/{userId}", method = {RequestMethod.GET})
+    @ResponseBody
+    public List<ArticleDto> whatMyArticle(@PathVariable Long userId) {
+        List<Participation> participations = participationService.findByUserId(userId);
+
+        List<ArticleDto> articleDtos = Lists.newArrayList();
+
+        for (Participation participation : participations) {
+            articleDtos.add(articleService.getArticleDto(participation));
+        }
+
+        return articleDtos;
+    }
+
+
 }

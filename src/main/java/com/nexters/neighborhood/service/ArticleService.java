@@ -243,4 +243,38 @@ public class ArticleService {
         articleRepository.save(savedArticle);
     }
 
+    public ArticleDto getArticleDto(Participation participation) {
+        ArticleDto articleDto = new ArticleDto();
+
+        Article participatedArticle = participation.getParticipatedArticle();
+
+        ParticipationDto participationDto = new ParticipationDto();
+        participationDto.setParticipantCount(participationRepository.findByArticleIdCount(participation.getParticipatedArticle().getId()));
+        participationDto.setRecentParticipatedUserName(participation.getParticipatedUser().getName());
+
+        articleDto.setArticleId(participatedArticle.getId());
+        articleDto.setParticipationDto(participationDto);
+        articleDto.setViewCount(participatedArticle.getViewCount());
+        articleDto.setContents(participatedArticle.getContents());
+        articleDto.setCommentCount(participatedArticle.getComments().size());
+        articleDto.setArticleMainImageUrl(participatedArticle.getArticleMainImageUrl());
+
+        Category category = categoryRepository.findOne(participatedArticle.getCategoryId());
+
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setCategoryId(category.getId());
+        categoryDto.setType(category.getType());
+
+        articleDto.setCategory(categoryDto);
+        articleDto.setCreatedAt(participatedArticle.getCreatedAt());
+        articleDto.setTitle(participatedArticle.getTitle());
+
+        Writer writer = new Writer();
+        writer.setUserId(participation.getParticipatedUser().getId());
+        writer.setProfileUrl(participation.getParticipatedUser().getProfileUrl());
+        writer.setName(participation.getParticipatedUser().getName());
+        articleDto.setWriter(writer);
+
+        return articleDto;
+    }
 }
