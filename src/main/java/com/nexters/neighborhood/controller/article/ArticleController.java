@@ -44,7 +44,7 @@ public class ArticleController {
     }
 
     /** 글 생성 **/
-    @RequestMapping(value = "/articles", method = {RequestMethod.PUT})
+    @RequestMapping(value = "/articles/update", method = {RequestMethod.POST})
     @ResponseBody
     public String putArticle(@ModelAttribute ArticleRequestParam article) {
         articleService.update(article);

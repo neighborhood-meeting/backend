@@ -32,7 +32,7 @@ public class CommentController {
         return "success";
     }
 
-    @RequestMapping(value = "/comments", method = {RequestMethod.PUT})
+    @RequestMapping(value = "/comments/update", method = {RequestMethod.POST})
     @ResponseBody
     public String putComment(@RequestBody CommentRequestParam commentRequestParam) {
         commentService.update(commentRequestParam);
