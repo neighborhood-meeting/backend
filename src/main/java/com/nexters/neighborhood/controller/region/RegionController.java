@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.controller.region;
 
+import com.nexters.neighborhood.dto.RegionSearchDto;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
@@ -39,7 +40,15 @@ public class RegionController {
 
     @RequestMapping(value = "/regions",method = {RequestMethod.GET})
     @ResponseBody
-    public List<RegionDto> joinRegion(@RequestParam Long userId) throws ExceedLimitRegionCountException, DuplicatedRoomCanNotJoinException {
+    public List<RegionDto> getRegions(@RequestParam Long userId) throws ExceedLimitRegionCountException, DuplicatedRoomCanNotJoinException {
         return regionService.findRegionsByUserId(userId);
     }
+
+    @RequestMapping(value = "/regions/search",method = {RequestMethod.GET})
+    @ResponseBody
+    public List<RegionSearchDto> getSearchedRegions(@RequestParam String regionName) {
+        return regionService.findRegionsLikeRegionName(regionName);
+    }
+
+
 }

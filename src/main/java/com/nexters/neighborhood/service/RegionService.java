@@ -1,6 +1,7 @@
 package com.nexters.neighborhood.service;
 
 import com.google.common.collect.Lists;
+import com.nexters.neighborhood.dto.RegionSearchDto;
 import com.nexters.neighborhood.exception.DuplicatedRoomCanNotJoinException;
 import com.nexters.neighborhood.exception.ExceedLimitRegionCountException;
 import com.nexters.neighborhood.dto.RegionDto;
@@ -13,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -101,5 +104,29 @@ public class RegionService {
         }
 
         return regions;
+    }
+
+    public List<RegionSearchDto> findRegionsLikeRegionName(String regionName) {
+        List<Region> regions = regionRepository.findByName(regionName);
+
+        List<RegionSearchDto> regionSearchDtos = Lists.newArrayList();
+
+        for (Region region : regions) {
+            RegionSearchDto regionSearchDto = new RegionSearchDto();
+            regionSearchDto.setRegionId(region.getId());
+            regionSearchDto.setDescription(region.getDescription());
+            if (region.getUsers() == null || region.getUsers().isEmpty()) {
+                regionSearchDto.setMemberCount(0);
+            } else {
+                regionSearchDto.setMemberCount(region.getUsers().size());
+            }
+
+            regionSearchDto.setName(region.getName());
+            regionSearchDto.setNotice(region.getNotice());
+
+            regionSearchDtos.add(regionSearchDto);
+        }
+
+        return regionSearchDtos;
     }
 }
