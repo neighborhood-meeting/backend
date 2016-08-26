@@ -31,4 +31,12 @@ public class CommentController {
 
         return "success";
     }
+
+    @RequestMapping(value = "/comments", method = {RequestMethod.PUT})
+    @ResponseBody
+    public String putComment(@RequestBody CommentRequestParam commentRequestParam) {
+        commentService.update(commentRequestParam);
+
+        return "success";
+    }
 }

@@ -236,4 +236,16 @@ public class ArticleService {
 
         articleDto.setParticipationDto(participationDto);
     }
+
+    public void update(ArticleRequestParam article) {
+        Article savedArticle = articleRepository.findOne(article.getArticleId());
+
+        savedArticle.setContents(article.getContents());
+        savedArticle.setTitle(article.getTitle());
+        savedArticle.setArticleMainImageUrl(imageService.uploadArticleMainImage(article.getArticleMainImage()));
+        savedArticle.setCategoryId(categoryRepository.findByType(article.getCategoryType()).getId());
+        savedArticle.setContents(article.getContents());
+
+        articleRepository.save(savedArticle);
+    }
 }

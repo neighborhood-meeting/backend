@@ -37,8 +37,17 @@ public class ArticleController {
     /** 글 생성 **/
     @RequestMapping(value = "/articles", method = {RequestMethod.POST})
     @ResponseBody
-    public String articles(@Validated @ModelAttribute ArticleRequestParam article) {
+    public String postArticle(@Validated @ModelAttribute ArticleRequestParam article) {
         articleService.save(article);
+
+        return article.toString();
+    }
+
+    /** 글 생성 **/
+    @RequestMapping(value = "/articles", method = {RequestMethod.POST})
+    @ResponseBody
+    public String putArticle(@Validated @ModelAttribute ArticleRequestParam article) {
+        articleService.update(article);
 
         return article.toString();
     }

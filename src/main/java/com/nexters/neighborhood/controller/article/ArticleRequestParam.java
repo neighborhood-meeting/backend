@@ -13,6 +13,8 @@ import java.util.Date;
 @Data
 public class ArticleRequestParam {
 
+    private Long articleId;
+
     private MultipartFile articleMainImage;
     @NotBlank
     private String title;

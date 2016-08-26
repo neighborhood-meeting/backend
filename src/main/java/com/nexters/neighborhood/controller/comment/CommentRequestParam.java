@@ -13,4 +13,6 @@ public class CommentRequestParam {
     private Long userId;
 
     private Long articleId;
+
+    private Long commentId;
 }

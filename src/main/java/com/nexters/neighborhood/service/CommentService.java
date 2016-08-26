@@ -62,4 +62,14 @@ public class CommentService {
 
         commentRepository.save(comment);
     }
+
+    public void update(CommentRequestParam commentRequestParam) {
+        Comment comment = commentRepository.findOne(commentRequestParam.getCommentId());
+
+        comment.setUserId(commentRequestParam.getUserId());
+        comment.setArticleId(commentRequestParam.getArticleId());
+        comment.setContents(commentRequestParam.getContents());
+
+        commentRepository.saveAndFlush(comment);
+    }
 }
