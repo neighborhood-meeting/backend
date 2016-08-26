@@ -19,4 +19,9 @@ public class FileUploadTestController {
     public String writeArticleTest() {
         return "article";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/api/v1/updateArticleTest")
+    public String updateArticleTest() {
+        return "update";
+    }
 }
