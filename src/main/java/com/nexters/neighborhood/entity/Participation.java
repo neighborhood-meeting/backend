@@ -16,28 +16,18 @@ public class Participation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "userId")
-    private User recentParticipatedUser;
+    private User participatedUser;
 
-    @OneToOne(mappedBy = "participation")
+    @ManyToOne(targetEntity = Article.class)
+    @JoinColumn(name = "articleId")
     private Article participatedArticle;
 
-    private Date recentParticipatedDate;
-
-    private Long participantCount;
-
-    public void addParticipantCount() {
-        if (participantCount == null) {
-            this.participantCount = 1L;
-            return;
-        }
-
-        this.participantCount++;
-    }
+    private Date participatedAt;
 
     @PostPersist
-    void recentParticipatedDate() {
-        recentParticipatedDate = new Date();
+    void participatedAt() {
+        participatedAt = new Date();
     }
 }

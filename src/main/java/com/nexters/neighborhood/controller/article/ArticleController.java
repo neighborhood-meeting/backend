@@ -70,7 +70,11 @@ public class ArticleController {
     @RequestMapping(value = "/articles/participate", method = {RequestMethod.POST})
     @ResponseBody
     public String participate(@RequestBody ParticipateRequestParam participateRequestParam) {
+//        if (articleService.isAlreadyParticipated(participateRequestParam)) {
+//            return "delete participated user";
+//        } else {
         articleService.participate(participateRequestParam);
+//        }
 
         return "success";
     }

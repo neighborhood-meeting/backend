@@ -33,30 +33,29 @@ CREATE TABLE neighborhood.category (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE neighborhood.participation (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `participant_count` bigint(20) DEFAULT NULL,
-  `recent_participated_date` datetime DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-);
-
 CREATE TABLE neighborhood.article (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `article_main_image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
-  `contents` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contents` text COLLATE utf8mb4_unicode_ci,
   `created_at` datetime DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `region_id` bigint(20) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `view_count` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `participation_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+);
+
+CREATE TABLE neighborhood.participation (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `participated_at` datetime DEFAULT NULL,
+  `article_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  FOREIGN KEY (`participation_id`) REFERENCES `participation` (`id`)
+  FOREIGN KEY (`article_id`) REFERENCES `article` (`id`)
 );
 
 CREATE TABLE neighborhood.comment (

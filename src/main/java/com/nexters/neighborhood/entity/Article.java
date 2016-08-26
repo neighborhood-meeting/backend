@@ -1,5 +1,6 @@
 package com.nexters.neighborhood.entity;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -37,10 +38,6 @@ public class Article {
     private User user;
 
     private String articleMainImageUrl;
-
-    @OneToOne
-    @JoinColumn(name = "participationId")
-    private Participation participation;
 
     @OneToMany(targetEntity = Comment.class, mappedBy = "articleId")
     private List<Comment> comments = new ArrayList<>();

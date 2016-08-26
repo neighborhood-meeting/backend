@@ -15,16 +15,16 @@ INSERT INTO category (type) VALUES ('FREE');
 INSERT INTO category (type) VALUES ('SHOPPING');
 INSERT INTO category (type) VALUES ('LIGHTNING');
 
-INSERT INTO participation (participant_count, recent_participated_date, user_id) VALUES ('13', '2016-08-21 16:27:33', '1');
-INSERT INTO participation (participant_count, recent_participated_date, user_id) VALUES ('13', '2016-08-21 16:27:33', '1');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', '황금고구마, 1kg 3500원, 4명', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '3', '오랜만에 집에 있으려니 심심하네요 :(', '오늘은 공강!!', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '불금인데 닭날다에서 치맥 어때요?', '홍대 닭날다, 17일 금요일, 7시 ', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '4', '세상세상 article contents 4 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '세상세상 article contents 5 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '세상세상 article contents 6 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '세상세상 article contents 7 쿠팡에서 5kg 황금고구마 같이 나눠서 사요', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33');
 
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', '황금고구마, 1kg 3500원, 4명', '1', '0', '1', '2016-08-21 16:27:33', '1');
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '3', '오랜만에 집에 있으려니 심심하네요 :(', '오늘은 공강!!', '1', '0', '1', '2016-08-21 16:27:33', '2');
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '불금인데 닭날다에서 치맥 어때요?', '홍대 닭날다, 17일 금요일, 7시 ', '1', '0', '1', '2016-08-21 16:27:33', null);
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '4', '세상세상 article contents 4 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33', null);
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '세상세상 article contents 5 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33', null);
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '세상세상 article contents 6 쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33', null);
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at, participation_id) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '세상세상 article contents 7 쿠팡에서 5kg 황금고구마 같이 나눠서 사요', 'article Name 3', '1', '0', '1', '2016-08-21 16:27:33', null);
+INSERT INTO participation (article_id, participated_at, user_id) VALUES ('1', '2016-08-21 16:27:33', '1');
+INSERT INTO participation (article_id, participated_at, user_id) VALUES ('1', '2016-08-21 16:27:36', '2');
 
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', '세상세상 댓글!!! 쿠팡에서 5kg 황금고구마 같이 나눠서 사요', '2016-08-21 16:27:33', '1');
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('1', '세상세상 댓글!!! 쿠팡에서 5kg 황금고구마 같이 나눠서 사요', '2016-08-21 16:27:33', '2');
