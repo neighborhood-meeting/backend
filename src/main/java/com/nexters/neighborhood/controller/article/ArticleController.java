@@ -27,7 +27,7 @@ public class ArticleController {
     @RequestMapping(value = "/articles/regions/{regionId}", method = {RequestMethod.GET})
     @ResponseBody
     public List<ArticleDto> findArticlesByRegionId(@PathVariable Long regionId) {
-        return articleService.findArticleDtoByRegionId(regionId);
+        return articleService.findArticlesByRegionId(regionId);
     }
 
     /** 내가 쓴 Article 목록 가져오기 **/
@@ -59,7 +59,7 @@ public class ArticleController {
     @RequestMapping(value = "/articles/search", method = {RequestMethod.GET})
     @ResponseBody
     public List<ArticleDto> findByRegionIdAndCategoryType(@RequestParam Long regionId, @RequestParam String type) {
-        return articleService.findByRegionIdAndCategoryType(regionId, type);
+        return articleService.findArticlesByRegionIdAndCategoryType(regionId, type);
     }
 
     /** Title like 검색 **/

@@ -17,51 +17,36 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-    private static final String DEFAULT_IMAGES_FILE_PATH = "/neighborhood/images";
+    private static final String DEFAULT_IMAGES_ROOT_FILE_PATH = "/neighborhood/images";
+
+    private static final String PROFILE_FILE_PATH = "/profile";
+    private static final String ARTICLE_FILE_PATH = "/article";
+
+    private static final String DEFAULT_IMAGE = "iu.jpg";
 
     public String uploadProfileImage(MultipartFile profileImage) {
-        DateTime nowTime = DateTime.now();
-
-        String profilePreUrl = String.format("/profile/%s", nowTime.toString("yyMMdd"));
-        String profileSuffixUrl = UUID.randomUUID().toString().replaceAll("-", "");
-
-        profileDirectoryRolling();
-
-        String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
-
-        try {
-            File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
-            if (profileImage == null) {
-                return "http://" + ServerUtils.getSERVER_IP() + "profile/iu.jpg";
-            } else {
-                profileImage.transferTo(file);
-                return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
-            }
-        } catch (IOException e) {
-            log.error("Profile Image Upload Fail! ", e);
-            return null;
-        }
+        return upload(PROFILE_FILE_PATH, profileImage);
     }
 
     public String uploadArticleMainImage(MultipartFile profileImage) {
-        if (profileImage == null) {
-            return null;
-        }
+        return upload(ARTICLE_FILE_PATH, profileImage);
+    }
 
+    private String upload(String profileFilePath, MultipartFile profileImage) {
         DateTime nowTime = DateTime.now();
 
-        String profilePreUrl = String.format("/article/%s", nowTime.toString("yyMMdd"));
+        String profilePreUrl = String.format(profileFilePath + "/%s", nowTime.toString("yyMMdd"));
         String profileSuffixUrl = UUID.randomUUID().toString().replaceAll("-", "");
 
-        articleDirectoryRolling();
+        imageDirectoryRolling(profileFilePath);
 
-        String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, profilePreUrl);
+        String imageFileDirectory = String.format("%s/%s", DEFAULT_IMAGES_ROOT_FILE_PATH, profilePreUrl);
 
         try {
             File file = new File(String.format("%s/%s", imageFileDirectory, profileSuffixUrl + ".jpg"));
 
             if (profileImage == null) {
-                return "http://" + ServerUtils.getSERVER_IP() + "profile/iu.jpg";
+                return "http://" + ServerUtils.getSERVER_IP() + "profile/" + DEFAULT_IMAGE;
             } else {
                 profileImage.transferTo(file);
                 return "http://" + ServerUtils.getSERVER_IP() + "" + profilePreUrl + "/" + profileSuffixUrl + ".jpg";
@@ -72,20 +57,10 @@ public class ImageService {
         }
     }
 
-    private void profileDirectoryRolling() {
+    private void imageDirectoryRolling(String profileFilePath) {
         DateTime nowTime = DateTime.now();
 
-        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/profile/%s", nowTime.toString("yyMMdd"))));
-
-        if (!imageFileDirectory.exists()) {
-            imageFileDirectory.mkdir();
-        }
-    }
-
-    private void articleDirectoryRolling() {
-        DateTime nowTime = DateTime.now();
-
-        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_FILE_PATH, String.format("/article/%s", nowTime.toString("yyMMdd"))));
+        File imageFileDirectory = new File(String.format("%s/%s", DEFAULT_IMAGES_ROOT_FILE_PATH, String.format(profileFilePath + "/%s", nowTime.toString("yyMMdd"))));
 
         if (!imageFileDirectory.exists()) {
             imageFileDirectory.mkdir();
