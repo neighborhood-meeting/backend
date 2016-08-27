@@ -49,7 +49,7 @@ INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '�
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '오빠... 무서워요.. ㅠㅠ', '2016-08-21 16:27:33', '4');
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '지그미니!!! 고독타이밍!!', '2016-08-21 16:27:33', '5');
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '지그미니!!! 고독타이밍!!', '2016-08-21 16:27:33', '6');
-INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '지그미니!!! 고독타이밍!!', '2016-08-21 16:27:33', '1');INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '민성아 왜 또 그러니??', '2016-08-21 16:27:33', '1');
+INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('2', '지그미니!!! 고독타이밍!!', '2016-08-21 16:27:33', '1');
 
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('3', '맥주 고고 하실 분!', '2016-08-21 16:27:33', '2');
 INSERT INTO comment (article_id, contents, created_at, user_id) VALUES ('3', '나는 오늘도 고독과 함께 맥주를 마신다.', '2016-08-21 16:27:33', '3');
