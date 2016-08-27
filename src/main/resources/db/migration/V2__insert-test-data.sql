@@ -1,9 +1,9 @@
 insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'ekdxhrl0096@daum.net', '김성진', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/seongjin.jpg', '남', '653ab858-ce05-4f29-9652-fa1f7b6ad1c8');
 insert into users (birth_date, email, name, password, profile_url, sex, token) values ('890523', 'dlxogjs89@daum.net', '이태헌', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/etae.jpg', '남', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('910523', 'alstjd91@daum.net', '강민성', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/meenseong.jpg', '남', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('940523', 'hihi94@daum.net', '강민성', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/heongji.jpg', '', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('930523', 'guswjd93@daum.net', '김현정', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/hungjin.jpg', '여', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
-insert into users (birth_date, email, name, password, profile_url, sex, token) values ('910523', 'gpdla91@daum.net', '최혜임', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/haeim.jpg', '여', '44a6d1ff-a7ca-4f32-a419-76510d79532e');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('910523', 'alstjd91@daum.net', '강민성', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/meenseong.jpg', '남', '44a6d1af-a7ca-4f32-a419-76510d79532e');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('940523', 'hihi94@daum.net', '강민성', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/heongji.jpg', '', '44a6d1ff-a7cf-4f32-a419-76510d79532e');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('930523', 'guswjd93@daum.net', '김현정', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/hungjin.jpg', '여', '44a6deef-a7ca-4f32-a419-76510d79532e');
+insert into users (birth_date, email, name, password, profile_url, sex, token) values ('910523', 'gpdla91@daum.net', '최혜임', '3bfb730ef7a648b784fb249e11b79cc1', 'http://52.78.120.152/profile/haeim.jpg', '여', '44a6d1bb-a7ca-4f32-a419-76510d79532e');
 
 INSERT INTO regions (description, name, notice) VALUES ("서울시 창전동 지역입니다. 재밌는 사람들 많이 들어와요~~!", "서울시 창전동", "벙개해요~ 위치는 단체톡으로 공유드릴게요!");
 INSERT INTO regions (description, name, notice) VALUES ("이천시 창전동!! 어여 들어와라!", "이천시 창전동", "이천시 창전동 운영자 구해요!!");
