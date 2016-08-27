@@ -19,13 +19,13 @@ INSERT INTO category (type) VALUES ('FREE');
 INSERT INTO category (type) VALUES ('SHOPPING');
 INSERT INTO category (type) VALUES ('LIGHTNING');
 
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '집에서 코딩만 하기 너무 힘들다... ㅠㅠ 놀고 싶다!! 맥주 드실분!!', '강남 맥주 마시러 가실 분 구함구함!!', '1', '0', '1', '2016-08-21 16:27:10');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/test1.jpg', '1', '집에서 코딩만 하기 너무 힘들다... ㅠㅠ 놀고 싶다!! 맥주 드실분!!', '강남 맥주 마시러 가실 분 구함구함!!', '1', '0', '1', '2016-08-21 16:27:10');
 INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '불금인데 닭날다에서 치맥 어때요?', '홍대 닭날다, 17일 금요일, 7시 ', '1', '0', '1', '2016-08-21 16:27:15');
 INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '4', '티몬에서 5kg 황금고구마 같이 나눠서 사요!', '황금고구마, 티몬에서 공구!! 4명', '1', '0', '1', '2016-08-21 16:27:18');
 INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '5', '위메프에서 5kg 황금고구마 같이 나눠서 사요!', '황금고구마, 위메프에서 공구!! 2명', '1', '0', '1', '2016-08-21 16:27:20');
 INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '쿠팡에서 5kg 황금고구마 같이 나눠서 사요!', '황금고구마, 1kg 3500원, 4명', '1', '0', '1', '2016-08-21 16:27:30');
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '고독이란 불현듯 찾아오는 것', '고독한 남자입니다.', '1', '0', '3', '2016-08-21 16:27:42');
-INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/articleMainImageUrl.jpg', '1', '코딩 잘하시는 분??? 개발 좀 알려주세요!!', '코딩 좀 알려주세요!!', '1', '0', '4', '2016-08-21 16:27:54');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/test1.jpg', '1', '고독이란 불현듯 찾아오는 것', '고독한 남자입니다.', '1', '0', '3', '2016-08-21 16:27:42');
+INSERT INTO article (article_main_image_url, category_id, contents, title, region_id, view_count, user_id, created_at) VALUES ('http://52.78.120.152/article/develop.jpg', '1', '이번에 쿠팡 개발자 신입 뽑는다는데 같이 지원해요!!!', '코딩 좀 알려주세요!!', '1', '0', '4', '2016-08-21 16:27:54');
 
 INSERT INTO participation (article_id, participated_at, user_id) VALUES ('1', '2016-08-21 16:27:33', '1');
 INSERT INTO participation (article_id, participated_at, user_id) VALUES ('1', '2016-08-21 16:27:36', '2');
